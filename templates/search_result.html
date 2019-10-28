@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+<div class="header">
+  <h1>Search Results</h1>
+  <p>Total: ??? Results</p>
+</div>
+
+<!-- needs to refresh -->
+<div class="choices">
+		<input type="checkbox" name="orderDate" value="orderDate"> Ordered by Publication Dates
+		<input type="checkbox" name="orderRel" value="orderRel"> Ordered by Relevance<br>
+</div>
+
+<!-- needs to refresh -->
+<!-- tentative -- >
+<div class="topics">
+		<input type="checkbox" name="otherT1" value="otherT1"> other topic 1
+		<input type="checkbox" name="otherT2" value="otherT2"> other topic 2
+</div>
+
+{% endblock %}
