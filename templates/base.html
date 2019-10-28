@@ -1,7 +1,84 @@
+
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
+    <head><title>YeSQL Pro Article Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    	<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body{
+	background-color: lightblue;
+}
+
+</style>
+</head>
+	 <body>
+	 	<div class="header">
+  <h1>YeSQL Article Search</h1>
+  <p>Find the Articles You Want</p>
+</div>
+    	<div class="topnav">
+  			<a href="frame.html">Search By Key Words</a> 
+ 			<a href="topic.html">Search By Topics</a> 	<!-- tentative -->
+  			<a href="author.html">Search by Authors</a> 	<!-- tentative -->
+  			<a href="recommend.html">Recommended for You</a>
+		</div>
         {% block content %}
         
         {% endblock %}
