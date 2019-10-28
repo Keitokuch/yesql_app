@@ -11,5 +11,9 @@ def hello():
     name = request.args.get('name','')
     return 'Hello ' + name + '!'
 
+@app.route('/test')
+def test():
+    return render_template('search_result.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
