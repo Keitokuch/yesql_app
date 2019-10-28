@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="header">
+  <h1>Recommended for you</h1>
+  <p>Based on your search history, these articles are recommended for you:</p>
+</div>
+
+<div class="choices">
+		<input type="checkbox" name="orderDate" value="orderDate"> Ordered by Publication Dates
+		<input type="checkbox" name="orderTopic" value="orderTopic"> Ordered by Topics<br>
+</div>
+
+{% endblock %}
