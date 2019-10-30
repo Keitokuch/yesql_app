@@ -1,20 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <center> 
-<div style="background-color:lightblue" width = "700">
-  <br><br><br>  
- 	 <form action="searchResult.html">
- 		<input type="text" name="KeyWord1" placeholder="Type in key words..." style="width: 50%;height:30px;font-size:12pt;"">
-		<!-- Key Word 2: <input type="text" name="KeyWord2" value="YeSQL"><br> -->
-		<input type="submit" value="Search!">
-		<br><br>
-		<input type="checkbox" name="peerReview" value="Peer Reviewed"> Peer Reviewed        
-		<input type="checkbox" name="orderDate" value="orderDate"> Ordered by Publication Dates
-		<input type="checkbox" name="orderA" value="orderA"> Ordered by Alphabets<br>
-	</form>
-	<br><br>
-</div>
+
+    <div style="background-color:lightblue" width = "700">
+
+        <br><br><br>  
+
+        <form action="searchResult.html">
+
+            <input type="text" name="KeyWord1" placeholder="Type in key words..." style="width: 50%;height:30px;font-size:12pt;" >
+
+            <!-- Key Word 2: <input type="text" name="KeyWord2" value="YeSQL"><br> -->
+
+            <input type="submit" value="Search!">
+
+            <br><br>
+
+            <input type="checkbox" name="peerReview" value="Peer Reviewed"> Peer Reviewed        
+            <input type="checkbox" name="orderDate" value="orderDate"> Ordered by Publication Dates
+            <input type="checkbox" name="orderA" value="orderA"> Ordered by Alphabets<br>
+
+        </form>
+
+        <br><br>
+
+    </div>
+
 </center>
 
 {% endblock %}
