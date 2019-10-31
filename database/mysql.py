@@ -2,7 +2,7 @@ from .mysql_connection import MySQLConnection
 
 
 db_config = {
-    'host': 'localhost',
+    'host': 'fa19-cs411-050.cs.illinois.edu',
     'user': 'root',
     'password': '123456',
     'db': 'pj'
