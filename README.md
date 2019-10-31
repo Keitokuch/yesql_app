@@ -1,7 +1,7 @@
 # yesql_app
 Web Journal Recommender. FA19 CS411 project of group YeSQL
 
-## Deployment instruction
+## Deployment instructions
 
 First make sure that you have python3 and pip3 installed.
 
@@ -31,7 +31,7 @@ App is ready to run:
 ```
 Visit `http://127.0.0.1:5000` to view it locally.
 
-## To unit test
+## Unit testing
 
 Run:
 ```sh
