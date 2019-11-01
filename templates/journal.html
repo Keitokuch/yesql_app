@@ -1,38 +1,63 @@
-<!DOCTYPE html>
-
 {% extends 'base.html' %}
 
+{% block style %}
+<style>
+/* styling for buttons */
+button {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: black;
+  padding: 3px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* styling for article table */
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+{% endblock %}
+
+
 {% block content %}
-    <center>
-        <div style="background-color:lightblue" width = "700">
+<!-- Show all existing artiles (id,name) -->
+<tbody>
+	<table>
+  		<tr>
+    	<td>Id</td>
+    	<td>Article Name</td>
+    	<td>Delete Article</td>
+    	<td>Update Article Information</td>
+  		</tr>
+	
+    	<tr>
+      	<td>0</td>
+      	<td>First journal title</td>
+      	<td> <!-- replace here --> <button class = "delete_button" onclick = "alert('the article has been deleted from the database');location.href='/journal'"> Delete </button> </td>
+		<td> <form action="/update"> 
+				<button class = "update_button"> Update </button>
+			</form> </td>
+    	</tr>
 
-            <br><br><br>
+  </table>
+</tbody>
 
-            <form action="searchResult.html">
+<!-- Insert new articles-->
+<div class = "insert">
+  <br>
+ 	 <form action="insert.html">
+ 		 <br>
+ 		 <!-- replace here -->
+ 		<input type="text" name="insert_name" placeholder="Type in complete article name, e.g. How to sleep 25 hours a day" style="width: 50%;height:30px;font-size:12pt;"">
+		 <!-- replace here --> <button class = "update_button" onclick = "alert('the article has been added to the database')"> Insert an Article </button>	
+	</form>
+	
+</div>
 
-                <textarea type="text" name="KeyWord1" placeholder="Type in query to create new journals..." style="width: 50%;font-size:12pt;" ></textarea>
-
-
-                <!-- Key Word 2: <input type="text" name="KeyWord2" value="YeSQL"><br> -->
-
-                <input type="submit" value="Create!">
-                <textarea type="text" name="KeyWord1" placeholder="Type in query to read journals..." style="width: 50%;font-size:12pt;" ></textarea>
-                <input type="submit" value="Read!">
-                <textarea type="text" name="KeyWord1" placeholder="Type in query to update journals..." style="width: 50%;font-size:12pt;" ></textarea>
-                <input type="submit" value="Update!">
-                <textarea type="text" name="KeyWord1" placeholder="Type in query to delete journals..." style="width: 50%;font-size:12pt;" ></textarea>
-                <input type="submit" value="Delete!">
-
-                <br><br>
-
-                <input type="checkbox" name="peerReview" value="Peer Reviewed"> Peer Reviewed
-                <input type="checkbox" name="orderDate" value="orderDate"> Ordered by Publication Dates
-                <input type="checkbox" name="orderA" value="orderA"> Ordered by Alphabets<br>
-
-            </form>
-
-            <br><br>
-
-        </div>
-    </center>
 {% endblock %}

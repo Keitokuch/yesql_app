@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<head><title>Updating Articles</title></head>
-
-<body>
-
+{% block style %}
 <style>
 /* styling for buttons */
 button {
@@ -27,17 +21,15 @@ table, th, td {
   border: 1px solid black;
 }
 </style>
+{% endblock %}
 
+{% block content %}
 <h>Update an Article</h>
 <p> You may update the name of the chosen article. </p>
- <form action="demo.html">
+ <form action="/updata">
  		 <br>
- 		<input type="text" name="update_name" placeholder="Type in complete article name, e.g. How to work 25 hours a day" style="width: 50%;height:30px;font-size:12pt;"">
-		<button class = "update_button"> Insert an Article </button>
+ 		<input type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
+		<button class = "update_button"> Update Journal Name</button>
 	</form>
 
-</head>
-<body>
-
-</body>
-</html>
+{% endblock %}

@@ -1,16 +1,8 @@
 from .mysql_connection import MySQLConnection
 
 
-db_config = {
-    'host': 'fa19-cs411-050.cs.illinois.edu',
-    'user': 'root',
-    'password': '123456',
-    'db': 'pj'
-}
-
-
 def get_jname_by_id(jid: int):
-    with MySQLConnection(db_config) as conn:
+    with MySQLConnection() as conn:
         with conn.cursor() as cursor:
             query = """
                     SELECT journal_name
@@ -20,3 +12,33 @@ def get_jname_by_id(jid: int):
                     """
             cursor.execute(query, {'jid': jid})
             return cursor.fetchall()
+
+
+def get_jid_name():
+    with MySQLConnection() as conn:
+        with conn.cursor() as cursor:
+            query = """
+                    SELECT *
+                    FROM jid_name
+                    LIMIT 10
+                    ;
+            """
+            cursor.execute(query)
+            return cursor.fetchall()
+
+
+def update_jname_by_id(jid: int, name: str):
+    with MySQLConnection() as conn:
+        try:
+            with conn.cursor() as cursor:
+                query = """
+                UPDATE jid_name
+                SET journal_name=%(jname)s
+                WHERE journal_id=%(jid)s
+                ;
+                """
+                cursor.execute(query, {'jname': name, 'jid': jid})
+                return 0
+        except Exception as e:
+            pass
+
