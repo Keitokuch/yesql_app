@@ -26,6 +26,17 @@ table, th, td {
 
 
 {% block content %}
+
+<!-- Insert new articles-->
+<div class = "search_box">
+    <br>
+    <form action="journal.html">
+        <input type="text" name="keyword" placeholder="Find journal by keyword" style="width: 50%;height:30px;font-size:12pt;">
+        <button class = "submit_buttun" > search </button>	
+    </form>
+    <br>
+</div>
+
 <!-- Show all existing artiles (id,name) -->
 <tbody>
 	<table>
@@ -59,7 +70,7 @@ table, th, td {
         }
         function to_update(jid) {
             if (jid != "undefined") {
-                window.location.href='/update?id=' + jid;
+                window.location.href='/update.html?id=' + jid;
             } else {
                 alert(' What happened?');
             }
@@ -71,15 +82,15 @@ table, th, td {
 </tbody>
 
 <!-- Insert new articles-->
+<br>
 <div class = "insert">
   <br>
- 	 <form action="insert.html">
- 		 <br>
- 		 <!-- replace here -->
- 		<input type="text" name="insert_name" placeholder="Type in complete article name, e.g. How to sleep 25 hours a day" style="width: 50%;height:30px;font-size:12pt;"">
-		 <!-- replace here --> <button class = "update_button" onclick = "alert('the article has been added to the database')"> Insert an Article </button>	
+ 	 <form action="insert">
+ 		<input type="text" name="jname" placeholder="Type in complete article name, e.g. How to sleep 25 hours a day" style="width: 50%;height:30px;font-size:12pt;">
+		 <button class = "insert_button" onclick = "alert('The article has been added to the database')"> Insert an Article </button>	
 	</form>
 	
 </div>
+<br>
 
 {% endblock %}
