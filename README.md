@@ -40,14 +40,14 @@ Run:
 
 ## Database Description
 Our main database in MySQL is "pj" (short for project).
-
+The backup database for "pj" is called "pj_backup".
 The descriptions of each table in "pj" are below.  
 
 Table "jid_name"
 
 | Field | Type | Null | Key | Default | Extra |
 | --- | --- | --- | --- | --- | --- |
-| journal_id   | int(11)      | NO   | PRI | NULL    |       |
+| journal_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
 | journal_name | varchar(255) | NO   |     | NULL    |       |
 
 Table "jid_field"
