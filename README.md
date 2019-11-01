@@ -40,7 +40,8 @@ Run:
 
 ## Database Description
 Our main database in MySQL is "pj" (short for project).
-The descriptions of each table in "pj" are below.
+
+The descriptions of each table in "pj" are below.  
 
 Table "jid_name"
 
