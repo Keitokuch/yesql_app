@@ -1,3 +1,3 @@
 from database import mysql as db
 
-print(db.get_jname_by_id(5))
+print(db.get_jid_name())
