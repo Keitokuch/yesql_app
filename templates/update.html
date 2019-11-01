@@ -24,8 +24,8 @@ table, th, td {
 {% endblock %}
 
 {% block content %}
-<h>Update an Article</h>
-<p> You may update the name of the chosen article. </p>
+<h>Update the name of Journal</h>
+<p> Original name: {{ old_name }} </p>
  		 <br>
  		<input id="jname_input" type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
 		<button class = "update_button" onclick="update_journal()"> Update Journal Name</button>
@@ -33,8 +33,9 @@ table, th, td {
     <script type="text/javascript">
         function update_journal() {
             const jname = document.getElementById('jname_input').value;
-            const url = window.location.href
-            const jid = url.charAt(url.length - 1)
+            const url_string = window.location.href
+            const url = new URL(url_string);
+			var jid = url.searchParams.get("id")
             if (jname != "undefined") {
                 window.location.href='/update?id=' + jid + '&name=' + jname;
 
