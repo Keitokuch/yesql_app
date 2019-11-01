@@ -26,10 +26,22 @@ table, th, td {
 {% block content %}
 <h>Update an Article</h>
 <p> You may update the name of the chosen article. </p>
- <form action="/updata">
  		 <br>
- 		<input type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
-		<button class = "update_button"> Update Journal Name</button>
-	</form>
+ 		<input id="jname_input" type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
+		<button class = "update_button" onclick="update_journal()"> Update Journal Name</button>
 
+    <script type="text/javascript">
+        function update_journal() {
+            const jname = document.getElementById('jname_input').value;
+            const url = window.location.href
+            const jid = url.charAt(url.length - 1)
+            if (jname != "undefined") {
+                window.location.href='/update?id=' + jid + '&name=' + jname;
+
+            } else {
+                alert(' What happened?');
+            }
+        }
+
+    </script>
 {% endblock %}

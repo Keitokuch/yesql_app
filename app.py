@@ -16,14 +16,15 @@ def test_page():
     return render_template('demo.html')
 
 
-@app.route('/update.html')
-def update_page():
-    return render_template('update.html')
-
-
 @app.route('/update')
 def update():
-    name = request.args.get('update_name')
+    jid = request.args.get('id')
+    jname = request.args.get('name')
+    if jid and jname:
+        db.update_jname_by_id(jid, jname)
+        return redirect('journal.html')
+
+    return render_template('update.html')
 
 @app.route('/delete')
 def delete():
