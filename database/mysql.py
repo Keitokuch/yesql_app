@@ -42,3 +42,14 @@ def update_jname_by_id(jid: int, name: str):
         except Exception as e:
             pass
 
+
+def delete_journal_by_id(jid: int):
+    with MySQLConnection() as conn:
+        with conn.cursor() as cursor:
+            query = """
+                    DELETE FROM jid_name
+                    WHERE journal_id = %(jid)s
+                    ;
+            """
+            cursor.execute(query, {'jid': jid})
+            return 0
