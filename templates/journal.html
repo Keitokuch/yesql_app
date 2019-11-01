@@ -42,9 +42,9 @@ table, th, td {
             <td id="jname" >{{ id_name['journal_name' ]}}</td>
             <td> <!-- replace here --> <button class = "delete_button" value="{{ id_name['journal_id'] }}" onclick = "delete_journal(this.value)" > Delete </button> </td>
 <!-- alert('the article has been deleted from the database'); -->
-		<td> <form action="/update"> 
-				<button class = "update_button"> Update </button>
-			</form> </td>
+		<td>
+				<button class = "update_button" value="{{ id_name['journal_id'] }}" onclick="to_update(this.value)"> Update </button>
+        </td>
     	</tr>
 
 {% endfor %}
@@ -57,6 +57,14 @@ table, th, td {
                 alert(' What happened?');
             }
         }
+        function to_update(jid) {
+            if (jid != "undefined") {
+                window.location.href='/update?id=' + jid;
+            } else {
+                alert(' What happened?');
+            }
+        }
+
     </script>
 
   </table>

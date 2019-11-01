@@ -29,7 +29,6 @@ def get_jid_name():
 
 def update_jname_by_id(jid: int, name: str):
     with MySQLConnection() as conn:
-        try:
             with conn.cursor() as cursor:
                 query = """
                 UPDATE jid_name
@@ -39,8 +38,7 @@ def update_jname_by_id(jid: int, name: str):
                 """
                 cursor.execute(query, {'jname': name, 'jid': jid})
                 return 0
-        except Exception as e:
-            pass
+
 
 
 def delete_journal_by_id(jid: int):
