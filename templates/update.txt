@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head><title>Updating Articles</title></head>
+
+<body>
+
+<style>
+/* styling for buttons */
+button {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: black;
+  padding: 3px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* styling for article table */
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<h>Update an Article</h>
+<p> You may update the name of the chosen article. </p>
+ <form action="demo.html">
+ 		 <br>
+ 		<input type="text" name="update_name" placeholder="Type in complete article name, e.g. How to work 25 hours a day" style="width: 50%;height:30px;font-size:12pt;"">
+		<button class = "update_button"> Insert an Article </button>
+	</form>
+
+</head>
+<body>
+
+</body>
+</html>
