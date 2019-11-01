@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
+from database import mysql as db
 import logging
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ def root():
 
 
 @app.route('/test')
-def test():
+def test_page():
     return render_template('demo.html')
 
 
@@ -24,6 +25,12 @@ def update_page():
 def update():
     name = request.args.get('update_name')
 
+@app.route('/delete')
+def delete():
+    jid = request.args.get('id')
+    db.delete_journal_by_id(jid)
+    return redirect('/journal.html')
+
 
 @app.route('/recommend.html')
 def recommend():
@@ -31,8 +38,9 @@ def recommend():
 
 
 @app.route('/journal.html')
-def toJournal():
-    return render_template('journal.html')
+def journal_page():
+    journals = db.get_jid_name()
+    return render_template('journal.html', data=journals)
 
 
 if __name__ == '__main__':
