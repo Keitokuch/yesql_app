@@ -66,21 +66,21 @@ def journal_page():
     return render_template('journal.html', data=journals)
 
 
-if __name__ == '__main__':
-    # Set up logging
-    os.makedirs(config.LOG_DIR, exist_ok=True)
-    logger = logging.getLogger("app")
-    logger.setLevel(config.LOG_LEVEL)
-    formatter = logging.Formatter(**config.LOG_FORMAT)
-    file_handler = logging.handlers.RotatingFileHandler(config.LOG_FILE,
-                                                        maxBytes=config.LOG_SIZE,
-                                                        backupCount=config.LOG_CNT)
-    file_handler.setFormatter(formatter)
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
-    logger.addHandler(file_handler)
-    logger.info("\n\n-------------------- start -----------------------\n")
+# Set up logging
+os.makedirs(config.LOG_DIR, exist_ok=True)
+logger = logging.getLogger("app")
+logger.setLevel(config.LOG_LEVEL)
+formatter = logging.Formatter(**config.LOG_FORMAT)
+file_handler = logging.handlers.RotatingFileHandler(config.LOG_FILE,
+                                                    maxBytes=config.LOG_SIZE,
+                                                    backupCount=config.LOG_CNT)
+file_handler.setFormatter(formatter)
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+logger.addHandler(stream_handler)
+logger.addHandler(file_handler)
+logger.info("\n\n-------------------- start -----------------------\n")
 
+if __name__ == '__main__':
     # Run app
     app.run(host='0.0.0.0')
