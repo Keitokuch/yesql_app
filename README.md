@@ -1,7 +1,7 @@
 # yesql_app
 Web Journal Recommender. FA19 CS411 project of group YeSQL
 
-## Deployment instructions
+## Deployment Instructions
 
 First make sure that you have python3 and pip3 installed.
 
@@ -31,7 +31,7 @@ App is ready to run:
 ```
 Visit `http://127.0.0.1:5000` to view it locally.
 
-## Unit testing
+## Unit Testing
 
 Run:
 ```sh
@@ -54,7 +54,7 @@ Table "jid_field"
 
 | Field | Type | Null | Key | Default | Extra |
 | --- | --- | --- | --- | --- | --- |
-| journal_id | int(11)      | NO   | PRI | NULL    |       |
+| journal_id | int(11)      | NO   | PRI | NULL    | FGN jid_name.journal_id       |
 | field      | varchar(255) | NO   | PRI | NULL    |       |
 
 Table "jsubj_fd"
