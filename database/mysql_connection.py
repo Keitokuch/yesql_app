@@ -1,12 +1,5 @@
 import pymysql
-
-db_config = {
-    'host': 'fa19-cs411-050.cs.illinois.edu',
-    'user': 'root',
-    'password': '123456',
-    'db': 'pj',
-    'cursorclass': pymysql.cursors.DictCursor
-}
+from dbconfig import db_config
 
 class MySQLConnection:
     def __init__(self, config: dict=db_config):
