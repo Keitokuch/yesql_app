@@ -6,21 +6,25 @@ import database.mysql as db
 from sklearn.neighbors import NearestNeighbors
 #  from sklearn.linear_model import LogisticRegression
 import pickle
-from utils.timer import Timer
 from model import Tfidf
-import service.article_service as articles
 import json
+from utils.timer import Timer
+import logging
+from utils.config import *
+
+Logger = logging.getLogger('app.'+__name__)
 
 
 class NNRecommender():
     def __init__(self, nn=10):
-        with open('local/tfidf.bin', 'rb') as f:
+        timer = Timer()
+        with open(LOCAL_DIR / 'tfidf.bin', 'rb') as f:
             self.tfidf = pickle.load(f)
-
-        vectors = scipy.sparse.load_npz('local/lemma_vectors.npz')
-        self.ids = [int(i) for i in np.load('local/aid_list.npy')]
+        vectors = scipy.sparse.load_npz(LOCAL_DIR / 'lemma_vectors.npz')
+        self.ids = [int(i) for i in np.load(LOCAL_DIR / 'aid_list.npy')]
         self.knn = NearestNeighbors(n_neighbors=nn, metric='cosine')
         self.knn.fit(vectors)
+        Logger.info(f'Recommender loaded in {next(timer)} seconds')
 
     def find_similar(self, aid):
         s = db.get_lemma_by_aid(aid)
@@ -31,6 +35,7 @@ class NNRecommender():
 
 
 if __name__ == "__main__":
+    import service.article_service as articles
     timer = Timer()
 
     with open('local/tfidf.bin', 'rb') as f:

@@ -31,5 +31,5 @@ def mysql_execute(query, args=None):
                 result = cursor.fetchall()
                 return ret, result, None
             except MySQLError as err:
-                Logger.error(f'MySQL {caller} failed: {err}')
-                return -1, [None], err
+                Logger.error(f'MySQL Failed in {caller}: {err}')
+                return -1, [], err

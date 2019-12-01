@@ -19,3 +19,5 @@ LOG_FORMAT = {
 LOG_SIZE = 5000000
 
 LOG_CNT = 5
+
+LOCAL_DIR = ROOT_DIR / "local"
