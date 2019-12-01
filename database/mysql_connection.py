@@ -1,5 +1,5 @@
 import pymysql
-from dbconfig import db_config
+from .dbconfig import db_config
 
 class MySQLConnection:
     def __init__(self, config: dict=db_config):
@@ -13,4 +13,3 @@ class MySQLConnection:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._connection.commit()
         self._connection.close()
-

@@ -5,6 +5,34 @@ import logging
 
 Logger = logging.getLogger("app."+__name__)
 
+def get_title_by_aid(aid: int):
+    Logger.info(f'DB select atitle by aid:{aid}')
+    with MySQLConnection() as conn:
+        with conn.cursor() as cursor:
+            query = """
+            SELECT title
+            FROM articles
+            WHERE article_id = %(aid)s
+            ;
+            """
+            cursor.execute(query, {'aid': aid})
+            return cursor.fetchone()
+
+
+def get_article_lemma(jid=None):
+    with MySQLConnection() as conn:
+        with conn.cursor() as cursor:
+            if not jid:
+                query = """
+                SELECT *
+                from article_lemma
+                ;
+                """
+                cursor.execute(query)
+                return cursor.fetchall()
+            else:
+                Logger.error('not implemented')
+
 
 def get_jname_by_id(jid: int):
     Logger.info(f'DB select jname by jid:{jid}')
