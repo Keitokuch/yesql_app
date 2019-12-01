@@ -16,6 +16,6 @@ LOG_FORMAT = {
     'datefmt': "%Y-%m-%d %H:%M:%S"
 }
 
-LOG_SIZE = 5000
+LOG_SIZE = 5000000
 
 LOG_CNT = 5

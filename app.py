@@ -8,6 +8,7 @@ import os
 app = Flask(__name__)
 
 
+
 @app.route('/')
 @app.route('/index')
 def root():
@@ -79,7 +80,7 @@ stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
-logger.info("\n\n-------------------- start -----------------------\n")
+
 
 if __name__ == '__main__':
     # Run app

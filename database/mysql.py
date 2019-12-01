@@ -2,9 +2,21 @@ from .mysql_connection import MySQLConnection
 from .mysql_connection import mysql_execute
 from pymysql.err import *
 import logging
+import json
 
 
 Logger = logging.getLogger("app."+__name__)
+
+
+def get_lemma_by_aid(aid: int):
+    query = """
+    SELECT lemma_list
+    FROM article_lemma
+    WHERE article_id = %(aid)s
+    ;
+    """
+    _, result, _ = mysql_execute(query, {'aid': aid})
+    return result[0]['lemma_list'] if result else None
 
 def get_title_by_aid(aid: int):
     query = """
@@ -98,8 +110,8 @@ def search_journal_by_name(keyword: str):
                     LIMIT 15
                     ;
                     """
-            cursor.execute(query, "%" + keyword + "%")
-            return cursor.fetchall()
+    _, result, err = mysql_execute(query, "%" + keyword + "%")
+    return result
 
 
 def update_jname_by_id(jid: int, name: str):
