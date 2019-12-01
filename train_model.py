@@ -1,7 +1,8 @@
 import scipy.sparse
+import numpy as np
 from database import mysql as db
 from utils.timer import Timer
-from model.tfidf import Tfidf
+from model import Tfidf
 import json
 import pickle
 
@@ -14,7 +15,7 @@ if __name__ == "__main__":
     timer('select')
 
     text = [json.loads(item['lemma_list']) for item in article_lemma]
-    ids = [item['article_id'] for item in article_lemma]
+    ids = [int(item['article_id']) for item in article_lemma]
 
     timer('text')
 
@@ -24,8 +25,11 @@ if __name__ == "__main__":
     timer('vectorize')
     print(type(vectors), vectors.shape)
 
-    scipy.sparse.save_npz('model/lemma_vectors.npz', vectors)
-    with open('model/tfidf.bin', 'wb') as f:
+    scipy.sparse.save_npz('local/lemma_vectors.npz', vectors)
+    np.save('local/aid_list.npy', ids)
+    with open('local/tfidf.bin', 'wb') as f:
         pickle.dump(tfidf, f)
 
     timer('dump')
+    ids = np.load('local/aid_list.npy')
+    print(ids)
