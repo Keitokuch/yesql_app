@@ -4,7 +4,6 @@ import utils.config as config
 import logging
 import logging.handlers
 import os
-from recommend.recommend import NNRecommender
 
 app = Flask(__name__)
 
@@ -82,7 +81,6 @@ logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 logger.info('\n\n====== Application started ======\n')
 
-recommender = NNRecommender(20)
 #  import inspect
 #  frame_info = inspect.stack()[1]
 #  logger.info('by ' + frame_info.filename)

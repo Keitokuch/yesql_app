@@ -8,9 +8,33 @@ import json
 Logger = logging.getLogger("app."+__name__)
 
 
+def article_title_search(query_str):
+    query = """
+    SELECT article_id, title
+    FROM articles
+    WHERE MATCH(title)
+        AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+    LIMIT 20;
+    """
+    ret, result, err = mysql_execute(query, {'query': query_str})
+    return result
+
+
+def article_full_search(query_str):
+    query = """
+    SELECT article_id, title
+    FROM articles
+    WHERE MATCH(title, authors, abstract)
+        AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+    LIMIT 20;
+    """
+    ret, result, err = mysql_execute(query, {'query': query_str})
+    return result
+
+
 def get_lemma_by_aid(aid: int):
     query = """
-    SELECT lemma_list
+    SELECT article_id, lemma_list
     FROM article_lemma
     WHERE article_id = %(aid)s
     ;
@@ -21,7 +45,7 @@ def get_lemma_by_aid(aid: int):
 
 def get_title_by_aid(aid: int):
     query = """
-    SELECT title
+    SELECT article_id, title
     FROM articles
     WHERE article_id = %(aid)s
     ;

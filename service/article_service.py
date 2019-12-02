@@ -1,5 +1,6 @@
 from model import Article
 from database import mysql as db
+from recommend import Recommender
 
 
 def get_by_id(aid: int):
@@ -21,5 +22,22 @@ def get_by_id(aid: int):
         fields = db.get_field_by_jid(journal)
         for field in fields:
             article.fields.add(field)
-
     return article
+
+
+def title_search(query_str):
+    results = db.article_title_search(query_str)
+    return results
+
+
+def full_search(query_str):
+    results = db.article_full_search(query_str)
+    return results
+
+
+def lemma_search(query_str):
+    ids = Recommender.lemma_search(query_str)
+    results = []
+    for aid in ids:
+        results += db.get_title_by_aid(aid)
+    return results
