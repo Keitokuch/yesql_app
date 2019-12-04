@@ -4,6 +4,8 @@ import utils.config as config
 import logging
 import logging.handlers
 import os
+import service.user_service as users
+
 
 app = Flask(__name__)
 
@@ -12,6 +14,33 @@ app = Flask(__name__)
 @app.route('/index')
 def root():
     return render_template('home.html')
+
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form['username']
+        passwd = request.form['passwd']
+        user = users.login_user(username, passwd)
+        if not user:
+            raise ValueError("Invalid login")
+        response = redirect(url_for('journal_page'))
+        response.set_cookie('session', str(user.id))
+        return response
+    else:
+        return redirect(url_for('journal_page'))
+
+
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        username = request.form['username']
+        passwd = request.form['passwd']
+        user = users.signup_user(username, passwd)
+        if not user:
+            raise ValueError("Unsuccessful New User Create")
+        response = redirect(url_for('login', code=307))
+        return response
 
 
 @app.route('/test')

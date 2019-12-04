@@ -8,27 +8,58 @@ import json
 Logger = logging.getLogger("app."+__name__)
 
 
-def article_title_search(query_str):
+def get_uid_and_passwd_by_name(name: str):
+    query = """
+    SELECT user_id, passwd
+    FROM user
+    WHERE username = %(name)s
+    ;
+    """
+    ret, result, err = mysql_execute(query, {'name': name})
+    return result[0] if result else None, err
+
+
+def get_user_by_uid(uid: int):
+    query = """
+    SELECT user_id, username
+    FROM user
+    WHERE user_id = %(uid)s;
+    """
+    ret, result, err = mysql_execute(query, {'uid': uid})
+    return result[0] if ret else None
+
+
+def insert_user(name: str, passwd: str):
+    query = """
+    INSERT INTO user(username, passwd)
+    VALUE (%(name)s, %(passwd)s)
+    ;
+    """
+    ret, _, err = mysql_execute(query, {'name': name, 'passwd': passwd})
+    return ret, err
+
+
+def article_title_search(search_key: str):
     query = """
     SELECT article_id, title
     FROM articles
     WHERE MATCH(title)
-        AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+        AGAINST (%(search_key)s IN NATURAL LANGUAGE MODE)
     LIMIT 20;
     """
-    ret, result, err = mysql_execute(query, {'query': query_str})
+    ret, result, err = mysql_execute(query, {'search_key': search_key})
     return result
 
 
-def article_full_search(query_str):
+def article_full_search(search_key: str):
     query = """
     SELECT article_id, title
     FROM articles
     WHERE MATCH(title, authors, abstract)
-        AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+        AGAINST (%(search_key)s IN NATURAL LANGUAGE MODE)
     LIMIT 20;
     """
-    ret, result, err = mysql_execute(query, {'query': query_str})
+    ret, result, err = mysql_execute(query, {'search_key': search_key})
     return result
 
 
