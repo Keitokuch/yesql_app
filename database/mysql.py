@@ -3,6 +3,7 @@ from .mysql_connection import mysql_execute
 from pymysql.err import *
 import logging
 import json
+from typing import List
 
 
 Logger = logging.getLogger("app."+__name__)
@@ -37,6 +38,17 @@ def insert_user(name: str, passwd: str):
     """
     ret, _, err = mysql_execute(query, {'name': name, 'passwd': passwd})
     return ret, err
+
+
+def get_aid_title():
+    query = """
+    SELECT article_id, title
+    FROM articles
+    LIMIT 50
+    ;
+    """
+    ret, result, err = mysql_execute(query)
+    return result
 
 
 def article_title_search(search_key: str):
@@ -82,6 +94,17 @@ def get_title_by_aid(aid: int):
     ;
     """
     _, result, _ = mysql_execute(query, {'aid': aid})
+    return result
+
+
+def get_title_by_aids(aids: List[int]):
+    query = f"""
+    SELECT article_id, title
+    FROM articles
+    WHERE article_id IN ({','.join(['%s'] * len(aids))})
+    ;
+    """
+    ret, result, err = mysql_execute(query, tuple(aids))
     return result
 
 

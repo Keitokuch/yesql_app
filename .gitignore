@@ -1,3 +1,5 @@
+local/
+log/
 .DS_Store
 .idea/
 .Session.vim

@@ -37,7 +37,9 @@ def full_search(query_str):
 
 def lemma_search(query_str):
     ids = Recommender.lemma_search(query_str)
-    results = []
-    for aid in ids:
-        results += db.get_title_by_aid(aid)
+    results = db.get_title_by_aids(ids)
     return results
+
+
+def list():
+    return db.get_aid_title()

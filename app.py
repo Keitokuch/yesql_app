@@ -1,10 +1,13 @@
 from flask import Flask, request, render_template, redirect, url_for
 from database import mysql as db
 import utils.config as config
+from utils.errors import *
 import logging
 import logging.handlers
 import os
-import service.user_service as users
+import service.user_service as Users
+import service.session_service as Sessions
+import service.article_service as Articles
 
 
 app = Flask(__name__)
@@ -12,8 +15,25 @@ app = Flask(__name__)
 
 @app.route('/')
 @app.route('/index')
-def root():
+def home():
     return render_template('home.html')
+
+
+@app.route('/search')
+def search():
+    keyword = request.args.get('keyword')
+    search_method = request.args.get('type')
+    if keyword:
+        if search_method == 'advanced':
+            results = Articles.full_search(keyword)
+        elif search_method == 'intelligent':
+            results = Articles.lemma_search(keyword)
+        else:
+            results = Articles.title_search(keyword)
+    else:
+        results = Articles.list()
+    #  return render_template('home.html', data=results)
+    return render_template('journal.html', data=results)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -21,14 +41,16 @@ def login():
     if request.method == "POST":
         username = request.form['username']
         passwd = request.form['passwd']
-        user = users.login_user(username, passwd)
-        if not user:
-            raise ValueError("Invalid login")
-        response = redirect(url_for('journal_page'))
-        response.set_cookie('session', str(user.id))
-        return response
+        try:
+            user = Users.login_user(username, passwd)
+            response = redirect(url_for('journal_page'))
+            session = Sessions.new(user)
+            response.set_cookie('session', session.key)
+            return response
+        except LoginError as err:
+            return redirect(url_for('home'))
     else:
-        return redirect(url_for('journal_page'))
+        return render_template('login.html')
 
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -36,11 +58,16 @@ def signup():
     if request.method == "POST":
         username = request.form['username']
         passwd = request.form['passwd']
-        user = users.signup_user(username, passwd)
+        try:
+            user = Users.signup_user(username, passwd)
+        except UserExistsError:
+            return redirect(url_for('login'))
         if not user:
             raise ValueError("Unsuccessful New User Create")
-        response = redirect(url_for('login', code=307))
+        response = redirect(url_for('login'))
         return response
+    else:
+        return render_template('signup')
 
 
 @app.route('/test')

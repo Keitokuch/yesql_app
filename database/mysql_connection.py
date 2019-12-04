@@ -23,7 +23,7 @@ class MySQLConnection:
 
 def mysql_execute(query, args=None):
     caller = sys._getframe(1).f_code.co_name
-    Logger.info(f'MySQL {caller} {args}')
+    Logger.debug(f'MySQL {caller} {args}')
     with MySQLConnection() as conn:
         with conn.cursor() as cursor:
             try:
