@@ -2,11 +2,11 @@ from database import neo4jdb
 import random
 
 #  ret = neo4jdb.get_likes_by_uid(11)
-ret = neo4jdb.users_also_viewed(1, 1)
+# ret = neo4jdb.users_also_viewed(1, 1)
+#
+# ret = neo4jdb.find_similar_user_articles(11)
 
-ret = neo4jdb.find_similar_user_articles(11)
-
-print(ret)
+# print(ret)
 
 ulist = []
 alist = []
