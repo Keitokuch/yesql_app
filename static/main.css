@@ -137,6 +137,14 @@ body {
 }
 
 
+.article_entry{
+    cursor: pointer;
+}
+
+.similar_entry{
+    text-decoration: underline;
+}
+
 
 /* -------- USER LOGIN PAGE -------- */
 * {

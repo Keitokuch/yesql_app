@@ -41,8 +41,9 @@
 </div>
   
 <div class="col big"> <!-- Related Articles -->
+    <h3 class="ggtitle">Similar Articles</h3>
   	{% for a in similar %}
-    <p class="ggtext" id="asimilar"><a value="{{ a['article_id'] }}" onclick = "see_detail({{ a['article_id'] }})" >{{ a['title'] }} </a></p>
+    <p class="ggtext" id="asimilar"><a class="article_entry similar_entry" value="{{ a['article_id'] }}" onclick = "see_detail({{ a['article_id'] }})" >{{ a['title'] }} </a></p>
   	{% endfor %}
 <div>
 

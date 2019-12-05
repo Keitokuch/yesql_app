@@ -69,9 +69,8 @@ def article_page(aid):
     like = False
     if session:
         user = session.user
-        #  neo4jdb.add_like_articles(user.id, aid)
-        #  neo4jdb.add_read_articles(user.id, aid)
-        #  like = neo4jdb.user_liked_article(user.id, aid)
+        neo4jdb.add_read_articles(user.id, aid)
+        like = neo4jdb.user_liked_article(user.id, aid)
     article = Articles.get_by_id(aid)
     similars = Recommender.find_similar(aid)
     #  user_views = neo4jdb.find_similar_user_articles()
@@ -85,6 +84,16 @@ def like():
     if session:
         user = session.user
         neo4jdb.add_like_articles(user.id, aid)
+    return redirect(url_for('article_page', aid=aid))
+
+
+@app.route('/article/unlike')
+def unlike():
+    aid = request.args.get('aid')
+    session = Sessions.get()
+    if session:
+        user = session.user
+        neo4jdb.remove_like_articles(user.id, aid)
     return redirect(url_for('article_page', aid=aid))
 
 

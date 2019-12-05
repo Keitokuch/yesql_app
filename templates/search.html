@@ -3,7 +3,11 @@
 {% block content %}
 
 <center> 
+    {% if articles %}
+    <div class="login_heading">
+    {% else %}
 	 <div class="heading">
+    {% endif %}
 	 	<h1> YeSQL Article Search </h1>		
         <div>
         	<form action="search" >
@@ -13,7 +17,7 @@
             	<input class="search_button" type="submit" value="Search!">
             	<br>
             	<label><input class="ggtext" value="basic" type="radio" name="type" checked/> Basic Search </label>
-  				<label><input class="ggtext" value="advance" type="radio" name="type" /> Advance Search</label>
+  				<label><input class="ggtext" value="advanced" type="radio" name="type" /> Advanced Search</label>
   				<label><input class="ggtext" value="intelligent" type="radio" name="type"/> Intelligent Search</label>
         	</form>
     	</div>
@@ -25,12 +29,12 @@
 {% if articles %} <!-- showing search results -->
 <table class="tablegg" id="ggtable">
 	<tr>
-    	<th>Article Name</th>
+    	<th>Search Results</th>
   	</tr>
 	{% for article in articles %}
     	<tr>
             <td id="atitle" >
-            	<a value="{{ article['article_id'] }}" onclick = "see_detail({{ article['article_id'] }})" >{{ article.title }} </a>
+            	<a class="article_entry" value="{{ article['article_id'] }}" onclick = "see_detail({{ article['article_id'] }})" >{{ article.title }} </a>
             </td>
         </tr>
 	{% endfor %} 	
