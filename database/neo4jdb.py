@@ -68,6 +68,16 @@ def find_similar_user_articles(uid):
         return res
 
 
+def user_liked_article(uid, aid):
+    with driver.session() as session:
+        res = session.run(
+            "MATCH (u:User {id: $uid}), (a:Article {id: $aid}) "
+            "RETURN EXISTS((u)-[:Like]-(a)) ",
+            uid=uid, aid=aid
+        )
+        return res.value()[0]
+
+
 def clear_all_records():
 
     with driver.session() as session:
