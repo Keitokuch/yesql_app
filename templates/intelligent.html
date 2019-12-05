@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Intelligent Search : Fuzzy Search -->
+
+<center> 
+	 <div class="heading">
+	 	<div>
+			<h1>Intelligent Search</h1>
+       		<p>Fuzzy Search</p>
+        </div>
+        <div>
+        	<form action="searchResult.html">
+				<!-- input box -->
+            	<input class="typing" type="text" name="KeyWord1" placeholder="Type in key words..." style="width: 50%;height:30px;font-size:12pt;" >
+            	<!-- search button -->
+            	<input class="search_button" type="submit" value="Search!">
+        	</form>
+    	</div>
+	 </div>       
+</center>
+
+{% endblock %}

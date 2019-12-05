@@ -1,40 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <title>YeSQL Pro Article Search</title>
-
+		<!-- website title -->
+        <title>YeSQL Article Search</title>
+		<!-- for better cellphone view -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+		<!-- style sheet -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" type="text/css">
-
         {% block style %} {% endblock %}
-
     </head>
 
     <body>
-
-        <div class="header">
-
-            <h1>YeSQL Article Search</h1>
-
-            <p>Find the Articles You Want</p>
-
-        </div>
-
+    	<!-- top navigation bar -->
         <div class="topnav">
-            <a href="frame.html">Search By Key Words</a>
-            <a href="topic.html">Search By Topics</a> 	<!-- tentative -->
-            <a href="author.html">Search by Authors</a> 	<!-- tentative -->
-            <a href="recommend.html">Recommended for You</a>
-            <a href="journal.html">Journal Search</a>
-        </div>
-
-        {% block content %}
-
-        {% endblock %}
-
+            <a class="items" href="/">Home</a>
+            <a class="items" href="basic.html">Basic Search</a> 	
+            <a class="items" href="advance.html">Advance Search</a> 	
+            <a class="items" href="intelligent.html">Intelligent Search</a>
+            <a class="items" href="login.html">User</a>
+            <!-- temp use --> <a class="items" href="journal.html">Journal Result Test Page</a>
+        </div>        
+        {% block content %}{% endblock %}
     </body>
 
 </html>

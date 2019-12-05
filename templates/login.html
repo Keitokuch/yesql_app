@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+
+<div class="heading">
+	<h1>User</h1>
+    <p>Personal Data   |   Custom Recommendation</p>
+
+</div>
+
+<div class="signinpage">
+		{% if data %}
+		  <p>Hello {{ data }}!</p>
+		{% else %}
+			<div class="row">
+				<div class="column">
+					<div class="card">
+		  				<h3>Log In<h3>
+						<form action="login">
+							<p>User Name<input type="email" name="username"></p>
+							<p>password<input type="password" name="pwd"></p>
+							<p><button class = "search_button">Sign in</button></p>
+						</form>
+    				</div>
+  				</div>
+  				<div class="column">
+					<div class="card">
+		  				<h3>Register<h3>
+						<form action="login">
+							<p>User Name<input type="email" name="username"></p>
+							<p>password<input type="password" name="pwd"></p>
+							<p><button class = "search_button">Register!</button></p>
+						</form>
+    				</div>
+  				</div>
+			</div>
+		<!--
+			<form action="login">
+				<p>email<input type="email" name="username"></p>
+				<p>password<input type="password" name="pwd"></p>
+				<p><button class = "search_button">Sign in</button></p>
+			</form>
+			-->
+		{% endif %}
+</div>
+
+{% endblock %}

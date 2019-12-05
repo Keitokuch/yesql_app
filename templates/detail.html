@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+<div class="heading">
+	<h> Article Details </h>
+</div>
+
+<div class="row">
+  <div class="col big">
+    <!-- Title of the article -->
+  	<h1 class="ggtitle" id="aname">{{ id_name['article_name' ]}}</h1>
+  	<!-- Authors of the article -->
+  	<p class="ggtext" id="aauthor">{{ id_name['article_name' ]}}</p>
+  	<!-- Journal Name -->
+  	<p class="ggtext" id="jname">{{ id_name['journal_name' ]}}</p> 
+  	<!-- Subject / Fields of the article -->
+  	<p class="ggtext" id="afield">{{ id_name['article_fields' ]}}</p>
+  	
+  	
+  	<div class="abstract"> <!-- Abstract -->
+  		<p class="ggtext" id="aabstract">{{ id_name['article_abstract' ]}}</p>
+  	</div>
+  	<div class="related"> <!-- Related Articles -->
+  		{% for id_name in data %}
+  			<p class="ggtext" id="arelated">{{ id_name['article_related' ]}}</p>
+  		{% endfor %}
+  	<div>
+
+  </div>
+  
+  <div class="col small">
+    <h3 class="ggheading">Links to the Article</h3>
+    {% for id_name in data %}
+  		<p class="ggtext" id="arelated">{{ id_name['article_link' ]}}</p>
+  	{% endfor %}
+</div>
+  
+
+{% endblock %}

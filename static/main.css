@@ -1,59 +1,191 @@
-* {
-    box-sizing: border-box;
-}
-
+/* make sure everything on edges */
 body {
-    margin: 0;
+	margin:0;
 }
 
-/* Style the header */
-.header {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
+/* --------  BUTTONS -------- */
+/* button styling (class = "ggbutton") */
+.ggbutton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+/* button hover (class = "test") */
+.ggbutton:hover{ 
+	color:#000;
+	background-color: white;
 }
 
-/* Style the top navigation bar */
+/* search button styling (class = "search_button")*/
+.search_button {
+  	background-color: black;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+}
+/* search button hover (class = "search_button") */
+.search_button:hover{ 
+	color: black;
+	background-color: grey;
+}
+
+
+/* --------  TOP NAVIGATION -------- */
+/* top navigation bar styling (class = "topnav") */
 .topnav {
-    overflow: hidden;
-    background-color: #333;
+  	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+  	overflow: hidden;
+  	background-color: #4CAF50; /* good green */
+  	position: fixed;
+  	top: 0;
+  	width: 100%;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   /* bar shadow */
 }
 
-/* Style the topnav links */
-.topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+/* top navigation bar items styling (class = "items") */
+.items {
+  	float: left;
+  	font-family: "Trebuchet MS", Helvetica, sans-serif;
+  	font-size:20px;
+  	display: block;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+}
+/* top navigation bar items hover (class = "items") */
+.items:hover {
+  background-color: white;
+  color: black;
 }
 
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+
+/* -------- CENTURAL PART -------- */
+/* centural part "YeSQL..." (class = "heading") */
+.heading{
+	/* border-bottom: 2px solid black; */
+	padding: 128px 16px;
+	/* margin-top: 120px;*/
+	text-align: center;
+	vertical-align: middle;
+	background-color: #4CAF50; /* good green */
+	color: white;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 25px;
 }
 
-*{
-    box-sizing: border-box;
+
+
+/* -------- USER LOGIN PAGE -------- */
+* {
+  box-sizing: border-box;
 }
 
-/* Create three equal columns that floats next to each other */
+/* card styling(class = "column") */
 .column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+  float: left;
+  width: 50%;
+  padding: 0 25px;
 }
 
-/* Clear floats after the columns */
+/* cards formating1 (class = "row") */
+.row {margin: 20px 75px;}
+
+/* cards formating2 (class = "row") */
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
+  	content: "";
+  	display: table;
+  	clear: both;
 }
 
-body{
-    background-color: lightblue;
+/* -------- USER PROFILE -------- */
+/* left column styling(class = "col big") */
+.leftcol {
+  	float: left;
+  	width: 25%;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	background-color: #f1f1f1;
+  	padding: 10px 16px;
+  	text-align:center;
 }
+
+/* right column styling(class = "col small") */
+.rightcol{
+  	float: left;
+  	width: 70%;
+  	padding: 10px 16px;
+}
+
+/* bottom free column (class="freecol")*/
+.freecol {
+  	float: left;
+  	width: 200%;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	/* background-color: #c6d4b0; */
+  	padding: 15px 30px;
+}
+
+
+/* Style the counter cards */
+.card {
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	padding: 16px;
+  	text-align: center;
+  	background-color: #f1f1f1;
+}
+
+/* -------- SEARCH RESULT PAGE -------- */
+/* general block formating (class containing "col") */
+.col {
+  	float: left;
+  	padding: 10px;
+}
+
+/* column styling(class = "col big") */
+.col.big {
+  	float: left;
+  	width: 70%;
+}
+
+/* column styling(class = "col small") */
+.col.small {
+  	float: left;
+  	width: 25%;
+	padding: 10px 16px; /* may delete or change later */
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	background-color: #f1f1f1;
+}
+
+
+/* -------- OTHER STUFF -------- */
+/* input box */
+.typing{
+	font-family: "Lucida Console", Monaco, monospace; /* change here */
+}
+
+/* General title font */
+.ggtitle{
+	font-family: "Georgia", serif;
+	
+}
+/* General text font */
+.ggtext{
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+

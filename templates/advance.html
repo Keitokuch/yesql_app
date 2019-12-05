@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- advance search: search title and abstract -->
+<center> 
+	 <div class="heading">
+	 	<div>
+			<h1>Advance Search</h1>
+        	<p>Exact Match  |  Search for article titles and abstract with keywords</p>
+        </div>
+        <div>
+        	<form action="searchResult.html">
+				<!-- input box -->
+            	<input class="typing" type="text" name="KeyWord1" placeholder="Type in key words..." style="width: 50%;height:30px;font-size:12pt;" >
+            	<!-- search button -->
+            	<input class="search_button" type="submit" value="Search!">
+        	</form>
+    	</div>
+	 </div>
+</center>
+
+{% endblock %}
