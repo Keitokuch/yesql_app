@@ -13,6 +13,7 @@ def get_by_id(aid: int):
     article.title = entry['title']
     article.authors = entry['authors']
     article.abstract = entry['abstract']
+    article.entries = []
 
     entries = db.get_entries_by_aid(aid)
     for item in entries:

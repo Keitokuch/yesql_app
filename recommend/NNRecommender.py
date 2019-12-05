@@ -23,6 +23,7 @@ class NNRecommender():
             self.tfidf = pickle.load(f)
         vectors = scipy.sparse.load_npz(LOCAL_DIR / 'lemma_vectors.npz')
         self.ids = [int(i) for i in np.load(LOCAL_DIR / 'aid_list.npy')]
+        #  self.ids = np.load(LOCAL_DIR / 'aid_list.npy').astype(int)
         self.knn = NearestNeighbors(n_neighbors=nn, metric='cosine')
         self.knn.fit(vectors)
         Logger.info(f'Recommender loaded in {next(timer)} seconds')
@@ -32,6 +33,7 @@ class NNRecommender():
         lemma_list = json.loads(s) if s else []
         query_vector = self.tfidf.transform(lemma_list)
         dists, indices = self.knn.kneighbors(query_vector)
+        indices = indices[0]
         result_ids = [self.ids[idx] for idx in indices]
         results = db.get_title_by_aids(result_ids)
         return results

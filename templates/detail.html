@@ -3,8 +3,8 @@
 {% block content %}
 
 <body>
-<div class="heading">
-	<h> Article Details </h>
+<div class="login_heading">
+	<h1> Article Details </h1>
 </div>
 
 <div class="row">
@@ -12,12 +12,12 @@
     <!-- Title of the article -->
   	<h1 class="ggtitle" id="aname">{{ article.title}} 
   		{% if like %}
-  		<form method="get">
-  			<button class="ggbutton" type="submit">Like this article</button>
+  		<form action="unlike" method="get">
+            <button class="ggbutton" type="submit" name="aid" value="{{article.id}}">Unlike</button>
   		</form>
   		{% else %}
-  		<form method="get">
-  			<button class="ggbutton" type="submit">Unlike</button>
+  		<form method="get" action="like">
+            <button class="ggbutton" type="submit" name="aid" value="{{article.id}}">Like this article</button>
   		</form>
   		{% endif %}
   	</h1>
@@ -25,31 +25,35 @@
   	<!-- Authors of the article -->
   	<p class="ggtext" id="aauthor">Authors | {{ article.authors}}</p>
   	
-  	<!-- Journal Name -->
-  	<p class="ggtext">Journals that Include this Article |  </p>
-  	{% for a in article.journals %}
-  		<p class="ggtext" id="asimilar">{{ a }}</p>
-  	{% endfor %}
-
   	<!-- Subject / Fields of the article -->
-  	<p class="ggtext" id="afield">Field | {{ article.fields }}</p>
+    <p class="ggtext" id="afield">Fields | {% for field in article.fields %}{{ field }} {%endfor%}</p>
   	
   	<div class="abstract"> <!-- Abstract -->
-  		<p class="ggtext" id="aabstract">Abstract | {{ article.abstract }}</p>
+        <p class="ggtext" id="aabstract">Abstract | <br>  {{ article.abstract }}</p>
   	</div>
 </div>
   
 <div class="col big">
     <h3 class="ggheading">Links to the Article</h3>
     {% for link in article.entries %}
-  		<p class="ggtext" id="link">{{ link[0] }}  |  {{ link[1] }}</p> <!-- change to links -->
+    <p class="ggtext" id="link"><a href="{{ link[0] }}" target="_blank">{{ link[0] }}</a>        |     {{ link[1] }}</p> <!-- change to links -->
   	{% endfor %}
 </div>
   
 <div class="col big"> <!-- Related Articles -->
-  	{% for a in article.similar %}
-  		<p class="ggtext" id="asimilar">{{ a }}</p>
+  	{% for a in similar %}
+    <p class="ggtext" id="asimilar"><a value="{{ a['article_id'] }}" onclick = "see_detail({{ a['article_id'] }})" >{{ a['title'] }} </a></p>
   	{% endfor %}
 <div>
 
+<script type="text/javascript">
+    function see_detail(aid) {
+        if (aid !== "undefined") {
+            console.log(aid)
+            window.location.href='/article/' + aid;
+        } else {
+            alert(' What happened?');
+        }
+    }
+</script>
 {% endblock %}

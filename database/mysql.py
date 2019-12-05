@@ -104,7 +104,7 @@ def get_title_by_aids(aids: List[int]):
     WHERE article_id IN ({','.join(['%s'] * len(aids))})
     ;
     """
-    ret, result, err = mysql_execute(query, tuple(aids))
+    ret, result, err = mysql_execute(query, aids)
     return result
 
 

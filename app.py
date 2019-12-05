@@ -69,8 +69,9 @@ def article_page(aid):
     like = False
     if session:
         user = session.user
-        neo4jdb.add_read_articles(user.id, aid)
-        like = neo4jdb.user_liked_article(user.id, aid)
+        #  neo4jdb.add_like_articles(user.id, aid)
+        #  neo4jdb.add_read_articles(user.id, aid)
+        #  like = neo4jdb.user_liked_article(user.id, aid)
     article = Articles.get_by_id(aid)
     similars = Recommender.find_similar(aid)
     #  user_views = neo4jdb.find_similar_user_articles()
