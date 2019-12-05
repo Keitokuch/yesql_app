@@ -10,21 +10,23 @@
 <div class="row">
   <div class="col big">
     <!-- Title of the article -->
-  	<h1 class="ggtitle" id="aname">{{ id_name['article_name' ]}}</h1>
+  	<h1 class="ggtitle" id="aname">{{ article.title}} <button class="ggbutton" >Like this article</button></h1>
   	<!-- Authors of the article -->
-  	<p class="ggtext" id="aauthor">{{ id_name['article_name' ]}}</p>
+  	<p class="ggtext" id="aauthor">{{ article.authors}}</p>
   	<!-- Journal Name -->
-  	<p class="ggtext" id="jname">{{ id_name['journal_name' ]}}</p> 
+  	{% for a in article.similar %}
+  		<p class="ggtext" id="asimilar">{{ a }}</p>
+  	{% endfor %}
   	<!-- Subject / Fields of the article -->
-  	<p class="ggtext" id="afield">{{ id_name['article_fields' ]}}</p>
+  	<p class="ggtext" id="afield">{{ article.fields }}</p>
   	
   	
   	<div class="abstract"> <!-- Abstract -->
-  		<p class="ggtext" id="aabstract">{{ id_name['article_abstract' ]}}</p>
+  		<p class="ggtext" id="aabstract">{{ article.abstract }}</p>
   	</div>
-  	<div class="related"> <!-- Related Articles -->
-  		{% for id_name in data %}
-  			<p class="ggtext" id="arelated">{{ id_name['article_related' ]}}</p>
+  	<div class="similar"> <!-- Related Articles -->
+  		{% for a in article.similar %}
+  			<p class="ggtext" id="asimilar">{{ a }}</p>
   		{% endfor %}
   	<div>
 
@@ -32,10 +34,13 @@
   
   <div class="col small">
     <h3 class="ggheading">Links to the Article</h3>
-    {% for id_name in data %}
-  		<p class="ggtext" id="arelated">{{ id_name['article_link' ]}}</p>
+    {% for link in article.entries %}
+  		<p class="ggtext" id="link">{{ link }}</p> <!-- change to links -->
   	{% endfor %}
 </div>
   
 
 {% endblock %}
+<style>
+
+</style>

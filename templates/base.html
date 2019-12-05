@@ -14,12 +14,17 @@
     <body>
     	<!-- top navigation bar -->
         <div class="topnav">
-            <a class="items" href="/">Home</a>
-            <a class="items" href="basic.html">Basic Search</a> 	
-            <a class="items" href="advance.html">Advance Search</a> 	
-            <a class="items" href="intelligent.html">Intelligent Search</a>
-            <a class="items" href="login.html">User</a>
-            <!-- temp use --> <a class="items" href="journal.html">Journal Result Test Page</a>
+        	<div>
+            	<a class="items" href="/">Wiki</a>
+            	<a class="items" href="basic.html">Search</a> 	
+            </div>
+            <div class="topnav-right">
+            {% if user %}
+            	<a class="items" href="profile.html">{{user.username}}</a>
+            {% else %}
+            	<a class="items" href="login.html">◎ login</a>
+            {% endif %}
+            </div>
         </div>        
         {% block content %}{% endblock %}
     </body>

@@ -3,6 +3,36 @@ body {
 	margin:0;
 }
 
+/* -------- TABLES --------*/
+#ggtable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tablegg {
+  margin-top: 35px;
+}
+
+#ggtable td, #ggtable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#ggtable tr:nth-child(even){background-color: #f2f2f2;}
+
+#ggtable tr:hover {background-color: #ddd;}
+
+#ggtable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #8acfed;
+  color: white;
+}
+
+
+
 /* --------  BUTTONS -------- */
 /* button styling (class = "ggbutton") */
 .ggbutton {
@@ -44,7 +74,7 @@ body {
 
 
 /* --------  TOP NAVIGATION -------- */
-/* top navigation bar styling (class = "topnav") */
+/* top navigation bar styling, left part(class = "topnav") */
 .topnav {
   	list-style-type: none;
   	margin: 0;
@@ -55,6 +85,11 @@ body {
   	top: 0;
   	width: 100%;
   	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   /* bar shadow */
+}
+
+/* float [user] to right */
+.topnav-right {
+  float: right;
 }
 
 /* top navigation bar items styling (class = "items") */
