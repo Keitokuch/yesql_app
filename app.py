@@ -21,7 +21,7 @@ app.secret_key = token_urlsafe()
 @app.route('/')
 @app.route('/index')
 def home():
-    return render_template('search.html')
+    return render_template('search.html', method='basic')
 
 
 @app.route('/search')
@@ -31,6 +31,8 @@ def search():
         user = session.user
     keyword = request.args.get('keyword')
     search_method = request.args.get('type')
+    if not search_method:
+        search_method = 'basic'
     if keyword:
         if search_method == 'advanced':
             results = Articles.full_search(keyword)
@@ -40,7 +42,7 @@ def search():
             results = Articles.title_search(keyword)
     else:
         results = Articles.list()
-    return render_template('search.html', articles=results)
+    return render_template('search.html', articles=results, method=search_method)
 
 
 @app.route('/user')
@@ -60,7 +62,12 @@ def wiki():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    session = Sessions.get()
+    if not session:
+        return redirect(url_for('login'))
+    else:
+        user = session.user
+        return render_template('profile.html')
 
 
 @app.route('/article/<aid>')
@@ -84,7 +91,9 @@ def like():
     if session:
         user = session.user
         neo4jdb.add_like_articles(user.id, aid)
-    return redirect(url_for('article_page', aid=aid))
+        return redirect(url_for('article_page', aid=aid))
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/article/unlike')
