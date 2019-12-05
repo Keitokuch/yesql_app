@@ -10,37 +10,46 @@
 <div class="row">
   <div class="col big">
     <!-- Title of the article -->
-  	<h1 class="ggtitle" id="aname">{{ article.title}} <button class="ggbutton" >Like this article</button></h1>
+  	<h1 class="ggtitle" id="aname">{{ article.title}} 
+  		{% if like %}
+  		<form method="get">
+  			<button class="ggbutton" type="submit">Like this article</button>
+  		</form>
+  		{% else %}
+  		<form method="get">
+  			<button class="ggbutton" type="submit">Unlike</button>
+  		</form>
+  		{% endif %}
+  	</h1>
+  	
   	<!-- Authors of the article -->
-  	<p class="ggtext" id="aauthor">{{ article.authors}}</p>
+  	<p class="ggtext" id="aauthor">Authors | {{ article.authors}}</p>
+  	
   	<!-- Journal Name -->
-  	{% for a in article.similar %}
+  	<p class="ggtext">Journals that Include this Article |  </p>
+  	{% for a in article.journals %}
   		<p class="ggtext" id="asimilar">{{ a }}</p>
   	{% endfor %}
+
   	<!-- Subject / Fields of the article -->
-  	<p class="ggtext" id="afield">{{ article.fields }}</p>
-  	
+  	<p class="ggtext" id="afield">Field | {{ article.fields }}</p>
   	
   	<div class="abstract"> <!-- Abstract -->
-  		<p class="ggtext" id="aabstract">{{ article.abstract }}</p>
+  		<p class="ggtext" id="aabstract">Abstract | {{ article.abstract }}</p>
   	</div>
-  	<div class="similar"> <!-- Related Articles -->
-  		{% for a in article.similar %}
-  			<p class="ggtext" id="asimilar">{{ a }}</p>
-  		{% endfor %}
-  	<div>
-
-  </div>
+</div>
   
-  <div class="col small">
+<div class="col big">
     <h3 class="ggheading">Links to the Article</h3>
     {% for link in article.entries %}
-  		<p class="ggtext" id="link">{{ link }}</p> <!-- change to links -->
+  		<p class="ggtext" id="link">{{ link[0] }}  |  {{ link[1] }}</p> <!-- change to links -->
   	{% endfor %}
 </div>
   
+<div class="col big"> <!-- Related Articles -->
+  	{% for a in article.similar %}
+  		<p class="ggtext" id="asimilar">{{ a }}</p>
+  	{% endfor %}
+<div>
 
 {% endblock %}
-<style>
-
-</style>
