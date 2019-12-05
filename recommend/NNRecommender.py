@@ -34,7 +34,7 @@ class NNRecommender():
         query_vector = self.tfidf.transform(lemma_list)
         dists, indices = self.knn.kneighbors(query_vector)
         indices = indices[0]
-        result_ids = [self.ids[idx] for idx in indices]
+        result_ids = [self.ids[idx] for idx in indices[:8]]
         results = db.get_title_by_aids(result_ids)
         return results
 
@@ -54,7 +54,7 @@ def init_nltk():
     Logger.info(f'nltk initialized in {next(timer)} seconds')
 
 
-Recommender = NNRecommender(8)
+Recommender = NNRecommender(30)
 
 
 if __name__ == "__main__":

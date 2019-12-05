@@ -16,9 +16,9 @@
             	<!-- search button -->
             	<input class="search_button" type="submit" value="Search!">
             	<br>
-            	<label><input class="ggtext" value="basic" type="radio" name="type" checked/> Basic Search </label>
-  				<label><input class="ggtext" value="advanced" type="radio" name="type" /> Advanced Search</label>
-  				<label><input class="ggtext" value="intelligent" type="radio" name="type"/> Intelligent Search</label>
+                <label><input class="ggtext" value="basic" type="radio" name="type" {%if method=='basic'%}checked{%endif%}/> Basic Search </label>
+  				<label><input class="ggtext" value="advanced" type="radio" name="type" {%if method=='advanced'%}checked{%endif%}/> Advanced Search</label>
+  				<label><input class="ggtext" value="intelligent" type="radio" name="type" {%if method=='intelligent'%}checked{%endif%}/> Intelligent Search</label>
         	</form>
     	</div>
 	

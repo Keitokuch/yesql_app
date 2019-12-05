@@ -44,7 +44,7 @@ def get_aid_title():
     query = """
     SELECT article_id, title
     FROM articles
-    LIMIT 50
+    LIMIT 30
     ;
     """
     ret, result, err = mysql_execute(query)
@@ -57,7 +57,7 @@ def article_title_search(search_key: str):
     FROM articles
     WHERE MATCH(title)
         AGAINST (%(search_key)s IN NATURAL LANGUAGE MODE)
-    LIMIT 20;
+    LIMIT 30;
     """
     ret, result, err = mysql_execute(query, {'search_key': search_key})
     return result
@@ -69,7 +69,7 @@ def article_full_search(search_key: str):
     FROM articles
     WHERE MATCH(title, authors, abstract)
         AGAINST (%(search_key)s IN NATURAL LANGUAGE MODE)
-    LIMIT 20;
+    LIMIT 50;
     """
     ret, result, err = mysql_execute(query, {'search_key': search_key})
     return result

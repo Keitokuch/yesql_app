@@ -36,6 +36,16 @@ def remove_like_articles(uid, aid):
         )
 
 
+def get_likes_by_uid(uid):
+    with driver.session() as session:
+        likes = session.run(
+            "MATCH (u:User {id: {uid}})-[r:Like]-(a:Article)"
+            "RETURN a.id",
+            uid=uid
+        )
+        return [like["a.id"] for like in likes]
+
+
 def find_similar_user_articles(uid):
     with driver.session() as session:
         # store read relation uid
