@@ -1,4 +1,5 @@
 from database import neo4jdb
+import random
 
 #  ret = neo4jdb.get_likes_by_uid(11)
 ret = neo4jdb.users_also_viewed(1, 1)
@@ -7,7 +8,19 @@ ret = neo4jdb.find_similar_user_articles(11)
 
 print(ret)
 
-#  neo4jdb.add_read_articles(1, 1)
+ulist = []
+alist = []
+for i in range(100):
+    print('sdff')
+    print(i)
+    alist.append(random.randint(1, 40))
+    ulist.append(random.randint(1, 1000))
+    neo4jdb.add_read_articles(ulist[i], alist[i])
+    if (i < 30):
+        neo4jdb.add_like_articles(ulist[i], alist[i])
+
+
+#
 #  neo4jdb.add_read_articles(2, 1)
 #  neo4jdb.add_read_articles(2, 5)
 #  neo4jdb.add_read_articles(3, 1)
