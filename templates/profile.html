@@ -4,38 +4,44 @@
 
 <body>
 
-<div class="heading">
+<div class="login_heading">
 	<h1>Hello, xxx </h1>
     <p>Personal Data  |  Custom Recommendation</p>
 
 </div>
 
 <div class="row">
-	<div class="column">
-		<div class="leftcol">
-		  	<h3 class="ggtitle">xxx<h3>
-    	</div>
-  	</div>
   	<div class="column">
 		<div class="rightcol">
-		  	<h3 class="ggtitle">My Favorite<h3>
-		  	<p class="ggtext">article 1...</p>
-		  	<p class="ggtext">article 2...</p>
-		  	<p class="ggtext">article 3...</p>
+		  	<h3 class="ggtitle">My Favorite Articles<h3>
+		  	{% for like in likes %}
+		  		<p class="ggtext"><a class="article_entry similar_entry" value="{{ like['article_id'] }}" onclick = "see_detail({{ like['article_id'] }})" >{{ like['title'] }} </a></p>
+		  	{% endfor %}
     	</div>
   	</div>
 </div>
+
+
 
 <div class="row">
 	<div class="column">
 		<div class="freecol">
 		  	<h3 class="ggtitle">Recommended for You<h3>
-		  	<p class="ggtext">article 1...</p>
-		  	<p class="ggtext">article 2...</p>
-		  	<p class="ggtext">article 3...</p>
+		  	{% for rec in recommends %}
+		  		<p class="ggtext"><a class="article_entry similar_entry" value="{{ rec['article_id'] }}" onclick = "see_detail({{ rec['article_id'] }})" >{{ rec['title'] }} </a></p>
+		  	{% endfor %}
     	</div>
   	</div>
 </div>
 		
-
+<script type="text/javascript">
+    function see_detail(aid) {
+        if (aid !== "undefined") {
+            console.log(aid)
+            window.location.href='/article/' + aid;
+        } else {
+            alert(' What happened?');
+        }
+    }
+</script>
 {% endblock %}
