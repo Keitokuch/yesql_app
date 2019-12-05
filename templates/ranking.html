@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+	 <div class="heading">
+	 	<div>
+			<h1>Most Liked Articles</h1>
+        </div>
+	 </div>
+</center>
+
+<tbody>
+	<table>
+  		<tr>
+    	<td>Article Name</td>
+    	<td>Liked Count</td>
+  		</tr>
+
+        {% for article, likecount in data.items() %}
+    	<tr>
+            <td id="jid" >{{ article }}</td>
+            <td id="jname" >{{ likecount }}</td>
+    	</tr>
+
+		{% endfor %}
+
+  </table>
+</tbody>
+
+{% endblock %}

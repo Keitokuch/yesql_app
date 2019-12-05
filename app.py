@@ -67,12 +67,7 @@ def profile():
         return redirect(url_for('login'))
     else:
         user = session.user
-        ids = neo4jdb.get_likes_by_uid(user.id)
-        likes = db.get_title_by_aids(ids)
-        ids = neo4jdb.find_similar_user_articles(user.id)
-        recommends = db.get_title_by_aids(ids)
-        return render_template('profile.html', username=user.username, likes=likes,
-                               recommends=recommends)
+        return render_template('profile.html')
 
 
 @app.route('/article/<aid>')
@@ -196,6 +191,15 @@ def journal_page():
         journals = db.get_jid_name()
     return render_template('journal.html', data=journals)
 
+@app.route('/ranking.html')
+def ranking_page():
+    article_id_likecount = neo4jdb.find_top_ten_articles()
+    article_name_likecount = {}
+    for article_id, likecount in article_id_likecount.items():
+        result = db.get_title_by_aid(article_id)
+        title = result[0]["title"]
+        article_name_likecount[title] = likecount
+    return render_template('ranking.html', data=article_name_likecount)
 
 # Set up logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
