@@ -4,7 +4,7 @@
 
 <center> 
 	 <div class="heading">
-	 	<h> YeSQL Article Search </h>		
+	 	<h1> YeSQL Article Search </h1>		
         <div>
         	<form action="search" >
 				<!-- input box -->
@@ -30,7 +30,7 @@
 	{% for article in articles %}
     	<tr>
             <td id="atitle" >
-            	<a value="{{ article['id'] }}" onclick = "see_detail(this.value)" >{{ article.title }} </a>
+            	<a value="{{ article['article_id'] }}" onclick = "see_detail({{ article['article_id'] }})" >{{ article.title }} </a>
             </td>
         </tr>
 	{% endfor %} 	
@@ -40,7 +40,8 @@
 
 <script type="text/javascript">
     function see_detail(aid) {
-        if (article_id != "undefined") {
+        if (aid !== "undefined") {
+            console.log(aid)
             window.location.href='/article/' + aid;
         } else {
             alert(' What happened?');

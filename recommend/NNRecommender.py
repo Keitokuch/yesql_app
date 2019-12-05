@@ -12,7 +12,7 @@ from utils.timer import Timer
 import logging
 from utils.config import *
 
-Logger = logging.getLogger('app.'+__name__)
+Logger = logging.getLogger("app."+__name__)
 
 
 class NNRecommender():
@@ -47,8 +47,11 @@ def init_nltk():
     timer = Timer()
     import nltk
     nltk.download('averaged_perceptron_tagger')
+    nltk.download('wordnet')
     Logger.info(f'nltk initialized in {next(timer)} seconds')
 
+
+Recommender = NNRecommender(50)
 
 
 if __name__ == "__main__":
