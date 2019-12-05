@@ -124,6 +124,18 @@ body {
 	font-size: 25px;
 }
 
+.login_heading{
+	/* border-bottom: 2px solid black; */
+	padding: 110px 16px 30px;
+	/* margin-top: 120px;*/
+	text-align: center;
+    vertical-align: middle;
+	background-color: #4CAF50; /* good green */
+	color: white;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 25px;
+}
+
 
 
 /* -------- USER LOGIN PAGE -------- */

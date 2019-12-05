@@ -6,7 +6,7 @@ import service.session_service as Sessions
 def require_login(function_to_protect):
     @wraps(function_to_protect)
     def wrapper(*args, **kwargs):
-        key = request.cookies.get('session')
+        key = request.cookies.get('user_session')
         if key:
             session = Sessions.get(key)
             if session:

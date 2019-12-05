@@ -1,22 +1,28 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 from database import mysql as db
 import utils.config as config
 from utils.errors import *
 import logging
 import logging.handlers
 import os
+from secrets import token_urlsafe
 import service.user_service as Users
 import service.session_service as Sessions
 import service.article_service as Articles
 
 
 app = Flask(__name__)
+app.secret_key = token_urlsafe()
 
 
 @app.route('/')
 @app.route('/index')
 def home():
-    return render_template('home.html')
+    session = Sessions.get()
+    if session:
+        user = session.user
+        return render_template('basic.html', user = user)
+    return render_template('basic.html')
 
 
 @app.route('/search')
@@ -33,7 +39,16 @@ def search():
     else:
         results = Articles.list()
     #  return render_template('home.html', data=results)
-    return render_template('journal.html', data=results)
+    return render_template('basic.html', articles=results)
+
+
+@app.route('/article/<aid>')
+def article_page(aid):
+    session = Sessions.get()
+    if session:
+        user = session.user
+    article = Articles.get_by_id(aid)
+    return render_template('detail.html', article = article)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -43,12 +58,14 @@ def login():
         passwd = request.form['passwd']
         try:
             user = Users.login_user(username, passwd)
-            response = redirect(url_for('journal_page'))
+            response = redirect(url_for('login'))
             session = Sessions.new(user)
-            response.set_cookie('session', session.key)
+            response.set_cookie('user_session', session.key)
+            flash('Login Successful!', 'success')
             return response
         except LoginError as err:
-            return redirect(url_for('home'))
+            flash('Invalid username or password. Please try again.', 'error')
+            return redirect(url_for('login'))
     else:
         return render_template('login.html')
 
@@ -60,14 +77,12 @@ def signup():
         passwd = request.form['passwd']
         try:
             user = Users.signup_user(username, passwd)
+            flash('Account created successfully! Please log in.', 'success')
         except UserExistsError:
-            return redirect(url_for('login'))
-        if not user:
-            raise ValueError("Unsuccessful New User Create")
-        response = redirect(url_for('login'))
-        return response
+            flash(f'username "{username}" already exists.', 'error')
+        return redirect(url_for('signup'))
     else:
-        return render_template('signup')
+        return render_template('signup.html')
 
 
 @app.route('/test')

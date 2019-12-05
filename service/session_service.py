@@ -1,3 +1,4 @@
+from flask import request
 from model import Session
 from secrets import token_urlsafe
 
@@ -14,7 +15,9 @@ def new(user):
     return session
 
 
-def get(session_key):
+def get(session_key=None):
+    if not session_key:
+        session_key = request.cookies.get('user_session')
     if session_key in sessions:
         return sessions[session_key]
     else:

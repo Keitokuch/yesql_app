@@ -39,6 +39,7 @@ def authenticate(user: User) -> User:
             Logger.info(f'User: {user.username} passwd verify failed.')
             raise PasswdNotMatchError(user.username)
     else:
+        Logger.info(f'User: {user.username} does not exist.')
         raise UserNotFoundError(user.username)
 
 

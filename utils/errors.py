@@ -25,4 +25,4 @@ class UserNotFoundError(LoginError):
 class PasswdNotMatchError(LoginError):
     def __init__(self, username):
         msg = f'Password authen failed for username: {username}'
-        super.__init__(msg, 401)
+        super().__init__(msg, 401)
