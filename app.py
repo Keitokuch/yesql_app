@@ -196,8 +196,9 @@ def ranking_page():
     article_name_likecount = {}
     for article_id, likecount in article_id_likecount.items():
         result = db.get_title_by_aid(article_id)
-        title = result[0]["title"]
-        article_name_likecount[title] = likecount
+        if result:
+            title = result[0]["title"]
+            article_name_likecount[title] = likecount
     return render_template('ranking.html', data=article_name_likecount)
 
 # Set up logging
