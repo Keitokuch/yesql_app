@@ -56,6 +56,18 @@ def get_reads_by_uid(uid):
         return [read["a.id"] for read in reads]
 
 
+def users_also_viewed(aid, uid=-1):
+    with driver.session() as session:
+        views = session.run(
+            "MATCH (a0:Article {id: {aid}})-[r0:Read]-(u:User)-[r1:Read]-(a1:Article) "
+            "WHERE a0.id <> a1.id AND u.id <> {uid} "
+            "RETURN a1.id "
+            "LIMIT 10",
+            aid=aid, uid=uid
+        )
+        return [view["a1.id"] for view in views]
+
+
 def find_similar_user_articles(uid):
     with driver.session() as session:
         # store read relation uid

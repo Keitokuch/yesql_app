@@ -78,10 +78,14 @@ def article_page(aid):
         user = session.user
         neo4jdb.add_read_articles(user.id, aid)
         like = neo4jdb.user_liked_article(user.id, aid)
+        other_views = neo4jdb.users_also_viewed(aid, user.id)
+    else:
+        other_views = neo4jdb.users_also_viewed(aid)
     article = Articles.get_by_id(aid)
     similars = Recommender.find_similar(aid)
-    #  user_views = neo4jdb.find_similar_user_articles()
-    return render_template('detail.html', article=article, similar=similars, like=like)
+    other_views = db.get_title_by_aids(other_views)
+    return render_template('detail.html', article=article, similar=similars,
+                           like=like, others=other_views)
 
 
 @app.route('/article/like')
@@ -175,11 +179,6 @@ def insert():
     jname = request.args.get('jname')
     db.insert_journal_name(jname)
     return redirect('journal.html')
-
-
-@app.route('/recommend.html')
-def recommend():
-    return render_template('recommend.html')
 
 
 @app.route('/journal.html')
