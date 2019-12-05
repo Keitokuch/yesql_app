@@ -58,7 +58,7 @@ def find_similar_user_articles(uid):
             "MATCH (u:User)-[:Like]-(a:Article) "
             "WHERE u.id IN $uid_list "
             "RETURN a.id "
-            "LIMIT 2",
+            "LIMIT 8",
             parameters={'uid_list': uid_list}
         )
         res = []
