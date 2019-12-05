@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
 
+{% block style %}
+<style>
+#LikedArt
+{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	width:100%;
+	border-collapse:collapse;
+}
+#LikedArt td, #LikedArt th
+{
+	font-size:1em;
+	border:1px solid #98bf21;
+	padding:3px 7px 2px 7px;
+}
+#LikedArt th
+{
+	font-size:1.1em;
+	text-align:left;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#A7C942;
+	color:#ffffff;
+}
+#LikedArt tr.alt td
+{
+	color:#000000;
+	background-color:#EAF2D3;
+}
+</style>
+
+{% endblock %}
+
 {% block content %}
 
 <center>
@@ -11,18 +43,16 @@
 </center>
 
 <tbody>
-	<table>
+	<table id = "LikedArt">
   		<tr>
-    	<td>Article Name</td>
-    	<td>Liked Count</td>
+    	<th>Article Name</th>
+    	<th>Liked Count</th>
   		</tr>
-
         {% for article, likecount in data.items() %}
     	<tr>
             <td id="jid" >{{ article }}</td>
             <td id="jname" >{{ likecount }}</td>
     	</tr>
-
 		{% endfor %}
 
   </table>
