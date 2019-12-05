@@ -21,8 +21,8 @@ def home():
     session = Sessions.get()
     if session:
         user = session.user
-        return render_template('basic.html', user = user)
-    return render_template('basic.html')
+        return render_template('search.html', user = user)
+    return render_template('search.html')
 
 
 @app.route('/search')
@@ -39,7 +39,17 @@ def search():
     else:
         results = Articles.list()
     #  return render_template('home.html', data=results)
-    return render_template('basic.html', articles=results)
+    return render_template('search.html', articles=results)
+
+
+@app.route('/wiki')
+def wiki():
+    return render_template('wiki.html')
+
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 
 @app.route('/article/<aid>')
@@ -151,6 +161,7 @@ stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 logger.info('\n\n====== Application started ======\n')
+
 
 #  import inspect
 #  frame_info = inspect.stack()[1]

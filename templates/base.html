@@ -15,14 +15,14 @@
     	<!-- top navigation bar -->
         <div class="topnav">
         	<div>
-            	<a class="items" href="/">Wiki</a>
-            	<a class="items" href="basic.html">Search</a> 	
+                <a class="items" href="{{ url_for('home') }}">Home</a> 	
+                <a class="items" href="{{ url_for('wiki') }}">Wiki</a>
             </div>
             <div class="topnav-right">
             {% if user %}
-            	<a class="items" href="profile.html">{{user.username}}</a>
+            <a class="items" href="{{ url_for('profilel') }}">{{user.username}}</a>
             {% else %}
-            	<a class="items" href="login.html">◎ login</a>
+            	<a class="items" href="{{ url_for('login') }}">◎ login</a>
             {% endif %}
             </div>
         </div>        

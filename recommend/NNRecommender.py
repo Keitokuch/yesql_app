@@ -18,6 +18,7 @@ Logger = logging.getLogger('app.'+__name__)
 class NNRecommender():
     def __init__(self, nn=10):
         timer = Timer()
+        init_nltk()
         with open(LOCAL_DIR / 'tfidf.bin', 'rb') as f:
             self.tfidf = pickle.load(f)
         vectors = scipy.sparse.load_npz(LOCAL_DIR / 'lemma_vectors.npz')
@@ -40,6 +41,14 @@ class NNRecommender():
         indices = indices[0]
         result_ids = [self.ids[idx] for idx in indices]
         return result_ids
+
+
+def init_nltk():
+    timer = Timer()
+    import nltk
+    nltk.download('averaged_perceptron_tagger')
+    Logger.info(f'nltk initialized in {next(timer)} seconds')
+
 
 
 if __name__ == "__main__":
