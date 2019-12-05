@@ -5,6 +5,7 @@ driver = GraphDatabase.driver(uri="bolt://localhost:7687", auth=("neo4j", "8888"
 
 
 def add_read_articles(uid, aid):
+    uid, aid = int(uid), int(aid)
     with driver.session() as session:
         session.run("MERGE (u:User {id: {uid}})", uid=uid)
         session.run("MERGE (a:Article {id: {read_article_id}})", read_article_id=aid)
@@ -17,6 +18,7 @@ def add_read_articles(uid, aid):
 
 
 def add_like_articles(uid, aid):
+    uid, aid = int(uid), int(aid)
     with driver.session() as session:
         session.run("MERGE (a:Article {id: {like_article_id}})", like_article_id=aid)
         result = session.run(
@@ -28,6 +30,7 @@ def add_like_articles(uid, aid):
 
 
 def remove_like_articles(uid, aid):
+    uid, aid = int(uid), int(aid)
     with driver.session() as session:
         session.run(
             "MATCH (u:User {id: {uid}})-[r:Like]-(a:Article {id: {aid}}) "
@@ -57,12 +60,14 @@ def get_reads_by_uid(uid):
 
 
 def users_also_viewed(aid, uid=-1):
+    uid, aid = int(uid), int(aid)
     with driver.session() as session:
         views = session.run(
             "MATCH (a0:Article {id: {aid}})-[r0:Read]-(u:User)-[r1:Read]-(a1:Article) "
             "WHERE a0.id <> a1.id AND u.id <> {uid} "
-            "RETURN a1.id "
-            "LIMIT 10",
+            "RETURN a1.id, COUNT(u) "
+            "ORDER BY COUNT(u) DESC "
+            "LIMIT 8",
             aid=aid, uid=uid
         )
         return [view["a1.id"] for view in views]
@@ -117,6 +122,7 @@ def find_similar_user_articles(uid):
 
 
 def user_liked_article(uid, aid):
+    uid, aid = int(uid), int(aid)
     with driver.session() as session:
         res = session.run(
             "MATCH (u:User {id: {uid}}), (a:Article {id: {aid}}) "
@@ -143,4 +149,14 @@ def find_most_relevant_articles(article_dict, uid_list, limit):
     return res
 
 
-
+def find_top_ten_articles():
+    with driver.session() as session:
+        result = session.run(
+            "MATCH (u:User)-[r:Like]-(a:Article) "
+            "RETURN a.id as article_id, COUNT(r) as likecount "
+            "ORDER BY likecount DESC LIMIT 10"
+        )
+        ac = {}
+        for record in result:
+            ac[record["article_id"]] = record["likecount"]
+        return ac

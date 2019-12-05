@@ -34,7 +34,7 @@ class NNRecommender():
         query_vector = self.tfidf.transform(lemma_list)
         dists, indices = self.knn.kneighbors(query_vector)
         indices = indices[0]
-        result_ids = [self.ids[idx] for idx in indices[:8]]
+        result_ids = [self.ids[idx] for idx in indices[:9] if self.ids[idx] != aid]
         results = db.get_title_by_aids(result_ids)
         return results
 

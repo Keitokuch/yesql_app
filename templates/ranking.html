@@ -48,14 +48,25 @@
     	<th>Article Name</th>
     	<th>Liked Count</th>
   		</tr>
-        {% for article, likecount in data.items() %}
+        {% for article_id, title_lc in data.items() %}
     	<tr>
-            <td id="jid" >{{ article }}</td>
-            <td id="jname" >{{ likecount }}</td>
+			<td><a class="article_entry" onclick = "see_detail({{ article_id }})" >{{ title_lc[0] }} </a></td>
+            <td>{{ title_lc[1] }}</td>
     	</tr>
 		{% endfor %}
 
   </table>
 </tbody>
+
+<script type="text/javascript">
+    function see_detail(aid) {
+        if (aid !== "undefined") {
+            console.log(aid)
+            window.location.href='/article/' + aid;
+        } else {
+            alert(' What happened?');
+        }
+    }
+</script>
 
 {% endblock %}

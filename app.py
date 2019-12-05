@@ -79,6 +79,7 @@ def profile():
 def article_page(aid):
     session = Sessions.get()
     like = False
+    aid = int(aid)
     if session:
         user = session.user
         neo4jdb.add_read_articles(user.id, aid)
@@ -95,7 +96,7 @@ def article_page(aid):
 
 @app.route('/article/like')
 def like():
-    aid = request.args.get('aid')
+    aid = int(request.args.get('aid'))
     session = Sessions.get()
     if session:
         user = session.user
@@ -107,7 +108,7 @@ def like():
 
 @app.route('/article/unlike')
 def unlike():
-    aid = request.args.get('aid')
+    aid = int(request.args.get('aid'))
     session = Sessions.get()
     if session:
         user = session.user
@@ -199,13 +200,13 @@ def journal_page():
 @app.route('/ranking.html')
 def ranking_page():
     article_id_likecount = neo4jdb.find_top_ten_articles()
-    article_name_likecount = {}
+    article_id_tl = {}
     for article_id, likecount in article_id_likecount.items():
         result = db.get_title_by_aid(article_id)
         if result:
             title = result[0]["title"]
-            article_name_likecount[title] = likecount
-    return render_template('ranking.html', data=article_name_likecount)
+            article_id_tl[article_id] = (title, likecount)
+    return render_template('ranking.html', data=article_id_tl)
 
 
 # Set up logging

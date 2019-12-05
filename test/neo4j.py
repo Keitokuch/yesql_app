@@ -8,17 +8,20 @@ import random
 
 # print(ret)
 
-ulist = []
-alist = []
-for i in range(100):
-    ulist.append(random.randint(1, 40))
-    alist.append(random.randint(1, 1000))
+#  ulist = []
+#  alist = []
+#  for i in range(100):
+    #  ulist.append(random.randint(1, 40))
+    #  alist.append(random.randint(1, 1000))
 
-for i in range(100):
-    print(i)
-    neo4jdb.add_read_articles(ulist[i], alist[i])
-    if (i < 30):
-        neo4jdb.add_like_articles(ulist[i], alist[i])
+#  for i in range(100):
+    #  print(i)
+    #  neo4jdb.add_read_articles(ulist[i], alist[i])
+    #  if (i < 30):
+        #  neo4jdb.add_like_articles(ulist[i], alist[i])
+
+ret = neo4jdb.find_top_ten_articles()
+print(ret)
 
 
 #
