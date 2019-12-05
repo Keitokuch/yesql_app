@@ -110,10 +110,8 @@ def find_similar_user_articles(uid):
 
         # remove read or liked articles by the recommended user
         dup_alist = get_likes_by_uid(uid) + get_reads_by_uid(uid)
-        searched_alist = [item[0] for item in article_list]
-        for idx, article in enumerate(dup_alist):
-            if article in searched_alist:
-                del article_list[idx - 1]
+        dup_alist = set(dup_alist)
+        article_list = [art for art in article_list if art[0] not in dup_alist]
         res = find_most_relevant_articles(article_list, uid_list, 8)
         return res
 
@@ -144,14 +142,5 @@ def find_most_relevant_articles(article_dict, uid_list, limit):
                 res.append(temp_tuple[0])
     return res
 
-def find_top_ten_articles():
-    with driver.session() as session:
-        result = session.run(
-            "MATCH (u:User)-[:Like]-(a:Article) "
-            "RETURN a.id as article_id, COUNT(u) as likecount "
-            "ORDER BY likecount DESC LIMIT 10"
-        )
-        ac = {}
-        for record in result:
-            ac[record["article_id"]] = record["likecount"]
-        return ac
+
+
