@@ -78,12 +78,6 @@ def user_liked_article(uid, aid):
         return res.value()[0]
 
 
-def clear_all_records():
-
-    with driver.session() as session:
-        session.run("MATCH (n)-[r]-() DELETE r")
-        session.run("match (c) delete c")
-
 
 # clear_all_records()
 # add_read_articles(1, 3)
