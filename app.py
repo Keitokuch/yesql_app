@@ -78,14 +78,10 @@ def article_page(aid):
         user = session.user
         neo4jdb.add_read_articles(user.id, aid)
         like = neo4jdb.user_liked_article(user.id, aid)
-        other_views = neo4jdb.users_also_viewed(aid, user.id)
-    else:
-        other_views = neo4jdb.users_also_viewed(aid)
     article = Articles.get_by_id(aid)
     similars = Recommender.find_similar(aid)
-    other_views = db.get_title_by_aids(other_views)
-    return render_template('detail.html', article=article, similar=similars,
-                           like=like, others=other_views)
+    #  user_views = neo4jdb.find_similar_user_articles()
+    return render_template('detail.html', article=article, similar=similars, like=like)
 
 
 @app.route('/article/like')
@@ -181,6 +177,11 @@ def insert():
     return redirect('journal.html')
 
 
+@app.route('/recommend.html')
+def recommend():
+    return render_template('recommend.html')
+
+
 @app.route('/journal.html')
 def journal_page():
     keyword = request.args.get('keyword')
@@ -193,13 +194,13 @@ def journal_page():
 @app.route('/ranking.html')
 def ranking_page():
     article_id_likecount = neo4jdb.find_top_ten_articles()
-    article_name_likecount = {}
+    article_id_tl = {}
     for article_id, likecount in article_id_likecount.items():
         result = db.get_title_by_aid(article_id)
         if result:
             title = result[0]["title"]
-            article_name_likecount[title] = likecount
-    return render_template('ranking.html', data=article_name_likecount)
+            article_id_tl[article_id] = (title, likecount)
+    return render_template('ranking.html', data=article_id_tl)
 
 # Set up logging
 os.makedirs(config.LOG_DIR, exist_ok=True)
