@@ -16,8 +16,9 @@
         <!-- top navigation bar -->
         <div class="topnav">
             <div>
-                <a class="items" href="{{ url_for('home') }}">Home</a> 	
+                <a class="items" href="{{ url_for('home') }}">Home</a>
                 <a class="items" href="{{ url_for('wiki') }}">Wiki</a>
+                <a class="items" href="{{ url_for('ranking_page') }}">Wiki</a>
             </div>
             <div class="topnav-right">
 
@@ -28,7 +29,7 @@
                 <!-- <a class="items" href="{{ url_for('login') }}">◎ login</a> -->
                 <!-- {% endif %} -->
             </div>
-        </div>        
+        </div>
 
                 <script>
             $.get("/user", function(data, status) {
@@ -46,4 +47,3 @@
     </body>
 
 </html>
-
