@@ -33,7 +33,8 @@ class NNRecommender():
         query_vector = self.tfidf.transform(lemma_list)
         dists, indices = self.knn.kneighbors(query_vector)
         result_ids = [self.ids[idx] for idx in indices]
-        return result_ids
+        results = db.get_title_by_aids(result_ids)
+        return results
 
     def lemma_search(self, query_str):
         query_vector = self.tfidf.transform(query_str)
@@ -51,7 +52,7 @@ def init_nltk():
     Logger.info(f'nltk initialized in {next(timer)} seconds')
 
 
-Recommender = NNRecommender(50)
+Recommender = NNRecommender(8)
 
 
 if __name__ == "__main__":

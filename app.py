@@ -10,6 +10,8 @@ import service.user_service as Users
 import service.session_service as Sessions
 import service.article_service as Articles
 from flask import jsonify
+from database import neo4jdb
+from recommend import Recommender
 
 
 app = Flask(__name__)
@@ -64,10 +66,25 @@ def profile():
 @app.route('/article/<aid>')
 def article_page(aid):
     session = Sessions.get()
+    like = False
     if session:
         user = session.user
+        neo4jdb.add_read_articles(user.id, aid)
+        like = neo4jdb.user_liked_article(user.id, aid)
     article = Articles.get_by_id(aid)
-    return render_template('detail.html', article = article)
+    similars = Recommender.find_similar(aid)
+    #  user_views = neo4jdb.find_similar_user_articles()
+    return render_template('detail.html', article=article, similar=similars, like=like)
+
+
+@app.route('/article/like')
+def like():
+    aid = request.args.get('aid')
+    session = Sessions.get()
+    if session:
+        user = session.user
+        neo4jdb.add_like_articles(user.id, aid)
+    return redirect(url_for('article_page', aid=aid))
 
 
 @app.route('/login', methods=["GET", "POST"])
