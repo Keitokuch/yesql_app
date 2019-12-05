@@ -67,7 +67,12 @@ def profile():
         return redirect(url_for('login'))
     else:
         user = session.user
-        return render_template('profile.html')
+        ids = neo4jdb.get_likes_by_uid(user.id)
+        likes = db.get_title_by_aids(ids)
+        ids = neo4jdb.find_similar_user_articles(user.id)
+        recommends = db.get_title_by_aids(ids)
+        return render_template('profile.html', username=user.username, likes=likes,
+                               recommends=recommends)
 
 
 @app.route('/article/<aid>')

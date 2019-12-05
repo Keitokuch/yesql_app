@@ -5,7 +5,7 @@
 <body>
 
 <div class="login_heading">
-	<h1>Hello, xxx </h1>
+    <h1>Hello, {{ username }} </h1>
     <p>Personal Data  |  Custom Recommendation</p>
 
 </div>
@@ -13,7 +13,7 @@
 <div class="row">
   	<div class="column">
 		<div class="rightcol">
-		  	<h3 class="ggtitle">My Favorite Articles<h3>
+		  	<h3 class="ggtitle">Articles You Liked<h3>
 		  	{% for like in likes %}
 		  		<p class="ggtext"><a class="article_entry similar_entry" value="{{ like['article_id'] }}" onclick = "see_detail({{ like['article_id'] }})" >{{ like['title'] }} </a></p>
 		  	{% endfor %}

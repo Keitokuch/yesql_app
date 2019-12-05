@@ -182,7 +182,7 @@ body {
 /* right column styling(class = "col small") */
 .rightcol{
   	float: left;
-  	width: 70%;
+  	width: 200%;
   	padding: 10px 16px;
 }
 
@@ -256,6 +256,7 @@ body {
 /* General text font */
 .ggtext{
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: #666666;
 }
 
 

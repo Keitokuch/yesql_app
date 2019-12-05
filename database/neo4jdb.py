@@ -56,6 +56,18 @@ def get_reads_by_uid(uid):
         return [read["a.id"] for read in reads]
 
 
+def users_also_viewed(aid, uid):
+    with driver.session() as session:
+        views = session.run(
+            "MATCH (a0:Article {id: {aid}})-[r0:Read]-(u:User)-[r1:Read]-(a1:Article) "
+            "WHERE a0.id <> a1.id AND u.id <> {uid} "
+            "RETURN a1.id "
+            "LIMIT 10",
+            aid=aid, uid=uid
+        )
+        return [view["a1.id"] for view in views]
+
+
 def find_similar_user_articles(uid):
     with driver.session() as session:
         # store read relation uid
@@ -98,10 +110,8 @@ def find_similar_user_articles(uid):
 
         # remove read or liked articles by the recommended user
         dup_alist = get_likes_by_uid(uid) + get_reads_by_uid(uid)
-        searched_alist = [item[0] for item in article_list]
-        for idx, article in enumerate(dup_alist):
-            if article in searched_alist:
-                del article_list[idx - 1]
+        dup_alist = set(dup_alist)
+        article_list = [art for art in article_list if art[0] not in dup_alist]
         res = find_most_relevant_articles(article_list, uid_list, 8)
         return res
 
