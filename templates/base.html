@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<!-- website title -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <!-- website title -->
         <title>YeSQL Article Search</title>
-		<!-- for better cellphone view -->
+        <!-- for better cellphone view -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- style sheet -->
+        <!-- style sheet -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" type="text/css">
         {% block style %} {% endblock %}
     </head>
 
     <body>
-    	<!-- top navigation bar -->
+        <!-- top navigation bar -->
         <div class="topnav">
-        	<div>
+            <div>
                 <a class="items" href="{{ url_for('home') }}">Home</a> 	
                 <a class="items" href="{{ url_for('wiki') }}">Wiki</a>
             </div>
             <div class="topnav-right">
-            {% if user %}
-            <a class="items" href="{{ url_for('profile') }}">{{user.username}}</a>
-            {% else %}
-            	<a class="items" href="{{ url_for('login') }}">◎ login</a>
-            {% endif %}
+
+                <a class="items" id="username" href="{{ url_for('login') }}">◎ login</a>
+                <!-- {% if user %} -->
+                <!-- <a class="items" href="{{ url_for('profile') }}">{{user.username}}</a> -->
+                <!-- {% else %} -->
+                <!-- <a class="items" href="{{ url_for('login') }}">◎ login</a> -->
+                <!-- {% endif %} -->
             </div>
         </div>        
+
+                <script>
+            $.get("/user", function(data, status) {
+                console.log(data.username)
+                if (typeof data.username !== "undefined") {
+                    console.log(data)
+                    $('#username').attr('href', "{{ url_for('profile')}}")
+                    $('#username').html(data.username)
+                }
+            })
+                </script>
         {% block content %}
-        
+
         {% endblock %}
     </body>
 

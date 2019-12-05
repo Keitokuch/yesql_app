@@ -9,6 +9,7 @@ from secrets import token_urlsafe
 import service.user_service as Users
 import service.session_service as Sessions
 import service.article_service as Articles
+from flask import jsonify
 
 
 app = Flask(__name__)
@@ -18,15 +19,14 @@ app.secret_key = token_urlsafe()
 @app.route('/')
 @app.route('/index')
 def home():
-    session = Sessions.get()
-    if session:
-        user = session.user
-        return render_template('search.html', user = user)
     return render_template('search.html')
 
 
 @app.route('/search')
 def search():
+    session = Sessions.get()
+    if session:
+        user = session.user
     keyword = request.args.get('keyword')
     search_method = request.args.get('type')
     if keyword:
@@ -38,8 +38,17 @@ def search():
             results = Articles.title_search(keyword)
     else:
         results = Articles.list()
-    #  return render_template('home.html', data=results)
     return render_template('search.html', articles=results)
+
+
+@app.route('/user')
+def user():
+    session = Sessions.get()
+    if session:
+        user = session.user
+        return jsonify({"username": user.username})
+    else:
+        return jsonify("nosession")
 
 
 @app.route('/wiki')
