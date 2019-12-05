@@ -218,6 +218,21 @@ body {
   	background-color: #f1f1f1;
 }
 
+/* -------- WIKI PAGE -------- */
+/* column styling(class = "col big") */
+.col.big {
+  	float: left;
+  	width: 85%;
+}
+
+/* column styling(class = "col small") */
+.col.small {
+  	float: left;
+  	width: 85%;
+	padding: 10px 16px; /* may delete or change later */
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	background-color: #f1f1f1;
+}
 
 /* -------- OTHER STUFF -------- */
 /* input box */
@@ -236,3 +251,40 @@ body {
 }
 
 
+
+
+
+/* -------- WIKI PAGE -------- */
+/* Float four columns side by side */
+.coo {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.roo {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.roo:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.caa {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  /*text-align: center;*/
+  background-color: #f1f1f1;
+}
+/*
+.foot{
+	width: 100%;
+	
+	border-top: solid;
+  	border-width: 2px;
+  	border-color: black;
+}
+*/
