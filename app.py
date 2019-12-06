@@ -1,16 +1,17 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
-from database import mysql as db
-import utils.config as config
-from utils.errors import *
+from flask import jsonify
+from secrets import token_urlsafe
 import logging
 import logging.handlers
 import os
-from secrets import token_urlsafe
+
+import utils.config as config
+from utils.errors import *
+from database import mysql as db
+from database import neo4jdb
 import service.user_service as Users
 import service.session_service as Sessions
 import service.article_service as Articles
-from flask import jsonify
-from database import neo4jdb
 from recommend import Recommender
 
 
@@ -223,12 +224,6 @@ stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 logger.info('\n\n====== Application started ======\n')
-
-
-#  import inspect
-#  frame_info = inspect.stack()[1]
-#  logger.info('by ' + frame_info.filename)
-
 
 
 if __name__ == '__main__':

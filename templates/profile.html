@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<body>
-
 <div class="login_heading">
     <h1>Hello, {{ username }} </h1>
     <p>Personal Data  |  Custom Recommendation</p>
@@ -11,37 +9,37 @@
 </div>
 
 <div class="row">
-  	<div class="column">
-		<div class="rightcol">
-		  	<h3 class="ggtitle">Articles You Liked<h3>
-		  	{% for like in likes %}
-		  		<p class="ggtext"><a class="article_entry similar_entry" value="{{ like['article_id'] }}" onclick = "see_detail({{ like['article_id'] }})" >{{ like['title'] }} </a></p>
-		  	{% endfor %}
-    	</div>
-  	</div>
+    <div class="column">
+        <div class="rightcol">
+            <h3 class="ggtitle">Articles You Liked<h3>
+                    {% for like in likes %}
+                    <p class="ggtext"><a class="article_entry similar_entry" value="{{ like['article_id'] }}" onclick = "see_detail({{ like['article_id'] }})" >{{ like['title'] }} </a></p>
+                    {% endfor %}
+        </div>
+    </div>
 </div>
 
 
 
 <div class="row">
-	<div class="column">
-		<div class="freecol">
-		  	<h3 class="ggtitle">Recommended for You<h3>
-		  	{% for rec in recommends %}
-		  		<p class="ggtext"><a class="article_entry similar_entry" value="{{ rec['article_id'] }}" onclick = "see_detail({{ rec['article_id'] }})" >{{ rec['title'] }} </a></p>
-		  	{% endfor %}
-    	</div>
-  	</div>
+    <div class="column">
+        <div class="freecol">
+            <h3 class="ggtitle">Recommended for You<h3>
+                    {% for rec in recommends %}
+                    <p class="ggtext"><a class="article_entry similar_entry" value="{{ rec['article_id'] }}" onclick = "see_detail({{ rec['article_id'] }})" >{{ rec['title'] }} </a></p>
+                    {% endfor %}
+        </div>
+    </div>
 </div>
-		
+
 <script type="text/javascript">
-    function see_detail(aid) {
-        if (aid !== "undefined") {
-            console.log(aid)
-            window.location.href='/article/' + aid;
-        } else {
-            alert(' What happened?');
-        }
-    }
+function see_detail(aid) {
+    if (aid !== "undefined") {
+    console.log(aid)
+    window.location.href='/article/' + aid;
+} else {
+    alert(' What happened?');
+}
+}
 </script>
 {% endblock %}

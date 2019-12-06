@@ -4,48 +4,48 @@
 <style>
 /* styling for buttons */
 button {
-  background-color: #e7e7e7; /* Green */
-  border: none;
-  color: black;
-  padding: 3px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+    background-color: #e7e7e7; /* Green */
+    border: none;
+    color: black;
+    padding: 3px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 /* styling for article table */
 table, th, td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 </style>
+
 {% endblock %}
 
 {% block content %}
 <div class="login_heading">
     <h2> Update </h2>		
 </div>
-<h>Update the name of Journal</h>
+<h3>Update the name of Journal</h3>
 <p> Original name: {{ old_name }} </p>
- 		 <br>
- 		<input id="jname_input" type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
-		<button class = "update_button" onclick="update_journal()"> Update Journal Name</button>
+<br>
+<input id="jname_input" type="text" name="update_name" placeholder="New journal name" style="width: 50%;height:30px;font-size:12pt;">
+<button class = "update_button" onclick="update_journal()"> Update Journal Name</button>
 
-    <script type="text/javascript">
-        function update_journal() {
-            const jname = document.getElementById('jname_input').value;
-            const url_string = window.location.href
-            const url = new URL(url_string);
-			var jid = url.searchParams.get("id")
-            if (jname != "undefined") {
-                window.location.href='/update?id=' + jid + '&name=' + jname;
+<script type="text/javascript">
+function update_journal() {
+    const jname = document.getElementById('jname_input').value;
+    const url_string = window.location.href
+    const url = new URL(url_string);
+    var jid = url.searchParams.get("id")
+    if (jname != "undefined") {
+        window.location.href='/update?id=' + jid + '&name=' + jname;
+    } else {
+        alert(' What happened?');
+    }
+}
+</script>
 
-            } else {
-                alert(' What happened?');
-            }
-        }
-
-    </script>
 {% endblock %}

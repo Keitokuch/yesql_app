@@ -29,7 +29,3 @@ if __name__ == "__main__":
     np.save('local/aid_list.npy', ids)
     with open('local/tfidf.bin', 'wb') as f:
         pickle.dump(tfidf, f)
-
-    timer('dump')
-    ids = np.load('local/aid_list.npy')
-    print(ids)

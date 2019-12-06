@@ -1,22 +1,22 @@
 /* make sure everything on edges */
 body {
-	margin:0;
+    margin:0;
 }
 
 /* -------- TABLES --------*/
 #ggtable {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .tablegg {
-  margin-top: 35px;
+    margin-top: 35px;
 }
 
 #ggtable td, #ggtable th {
-  border: 1px solid #ddd;
-  padding: 8px;
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 #ggtable tr:nth-child(even){background-color: #f2f2f2;}
@@ -24,11 +24,11 @@ body {
 #ggtable tr:hover {background-color: #ddd;}
 
 #ggtable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #8acfed;
-  color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #8acfed;
+    color: white;
 }
 
 
@@ -36,104 +36,104 @@ body {
 /* --------  BUTTONS -------- */
 /* button styling (class = "ggbutton") */
 .ggbutton {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 /* button hover (class = "test") */
 .ggbutton:hover{ 
-	color:#000;
-	background-color: white;
+    color:#000;
+    background-color: white;
 }
 
 /* search button styling (class = "search_button")*/
 .search_button {
-  	background-color: black;
-  	border: none;
-  	color: white;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	font-size: 16px;
-  	margin: 4px 2px;
-  	cursor: pointer;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 /* search button hover (class = "search_button") */
 .search_button:hover{ 
-	color: black;
-	background-color: grey;
+    color: black;
+    background-color: grey;
 }
 
 
 /* --------  TOP NAVIGATION -------- */
 /* top navigation bar styling, left part(class = "topnav") */
 .topnav {
-  	list-style-type: none;
-  	margin: 0;
-  	padding: 0;
-  	overflow: hidden;
-  	background-color: #4CAF50; /* good green */
-  	position: fixed;
-  	top: 0;
-  	width: 100%;
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   /* bar shadow */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4CAF50; /* good green */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   /* bar shadow */
 }
 
 /* float [user] to right */
 .topnav-right {
-  float: right;
+    float: right;
 }
 
 /* top navigation bar items styling (class = "items") */
 .items {
-  	float: left;
-  	font-family: "Trebuchet MS", Helvetica, sans-serif;
-  	font-size:20px;
-  	display: block;
-  	color: white;
-  	text-align: center;
-  	padding: 14px 16px;
-  	text-decoration: none;
+    float: left;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size:20px;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 /* top navigation bar items hover (class = "items") */
 .items:hover {
-  background-color: white;
-  color: black;
+    background-color: white;
+    color: black;
 }
 
 
 /* -------- CENTURAL PART -------- */
 /* centural part "YeSQL..." (class = "heading") */
 .heading{
-	/* border-bottom: 2px solid black; */
-	padding: 128px 16px;
-	/* margin-top: 120px;*/
-	text-align: center;
-	vertical-align: middle;
-	background-color: #4CAF50; /* good green */
-	color: white;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	font-size: 25px;
+    /* border-bottom: 2px solid black; */
+    padding: 128px 16px;
+    /* margin-top: 120px;*/
+    text-align: center;
+    vertical-align: middle;
+    background-color: #4CAF50; /* good green */
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 25px;
 }
 
 .login_heading{
-	/* border-bottom: 2px solid black; */
-	padding: 110px 16px 30px;
-	/* margin-top: 120px;*/
-	text-align: center;
+    /* border-bottom: 2px solid black; */
+    padding: 110px 16px 30px;
+    /* margin-top: 120px;*/
+    text-align: center;
     vertical-align: middle;
-	background-color: #4CAF50; /* good green */
-	color: white;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	font-size: 25px;
+    background-color: #4CAF50; /* good green */
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 25px;
 }
 
 
@@ -148,14 +148,14 @@ body {
 
 /* -------- USER LOGIN PAGE -------- */
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* card styling(class = "column") */
 .column {
-  float: left;
-  width: 50%;
-  padding: 0 25px;
+    float: left;
+    width: 50%;
+    padding: 0 25px;
 }
 
 /* cards formating1 (class = "row") */
@@ -163,99 +163,99 @@ body {
 
 /* cards formating2 (class = "row") */
 .row:after {
-  	content: "";
-  	display: table;
-  	clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* -------- USER PROFILE -------- */
 /* left column styling(class = "col big") */
 .leftcol {
-  	float: left;
-  	width: 25%;
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	background-color: #f1f1f1;
-  	padding: 10px 16px;
-  	text-align:center;
+    float: left;
+    width: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #f1f1f1;
+    padding: 10px 16px;
+    text-align:center;
 }
 
 /* right column styling(class = "col small") */
 .rightcol{
-  	float: left;
-  	width: 200%;
-  	padding: 10px 16px;
+    float: left;
+    width: 200%;
+    padding: 10px 16px;
 }
 
 /* bottom free column (class="freecol")*/
 .freecol {
-  	float: left;
-  	width: 200%;
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	/* background-color: #c6d4b0; */
-  	padding: 15px 30px;
+    float: left;
+    width: 200%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* background-color: #c6d4b0; */
+    padding: 15px 30px;
 }
 
 
 /* Style the counter cards */
 .card {
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	padding: 16px;
-  	text-align: center;
-  	background-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
 }
 
 /* -------- SEARCH RESULT PAGE -------- */
 /* general block formating (class containing "col") */
 .col {
-  	float: left;
-  	padding: 10px;
+    float: left;
+    padding: 10px;
 }
 
 /* column styling(class = "col big") */
 .col.big {
-  	float: left;
-  	width: 85%;
+    float: left;
+    width: 85%;
 }
 
 /* column styling(class = "col small") */
 .col.small {
-  	float: left;
-  	width: 85%;
-	padding: 10px 16px; /* may delete or change later */
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	background-color: #f1f1f1;
+    float: left;
+    width: 85%;
+    padding: 10px 16px; /* may delete or change later */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #f1f1f1;
 }
 
 /* -------- WIKI PAGE -------- */
 /* column styling(class = "col big") */
 .col.big {
-  	float: left;
-  	width: 85%;
+    float: left;
+    width: 85%;
 }
 
 /* column styling(class = "col small") */
 .col.small {
-  	float: left;
-  	width: 85%;
-	padding: 10px 16px; /* may delete or change later */
-  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	background-color: #f1f1f1;
+    float: left;
+    width: 85%;
+    padding: 10px 16px; /* may delete or change later */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #f1f1f1;
 }
 
 /* -------- OTHER STUFF -------- */
 /* input box */
 .typing{
-	font-family: "Lucida Console", Monaco, monospace; /* change here */
+    font-family: "Lucida Console", Monaco, monospace; /* change here */
 }
 
 /* General title font */
 .ggtitle{
-	font-family: "Georgia", serif;
-	
+    font-family: "Georgia", serif;
+
 }
 /* General text font */
 .ggtext{
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     color: #666666;
 }
 
@@ -266,9 +266,9 @@ body {
 /* -------- WIKI PAGE -------- */
 /* Float four columns side by side */
 .coo {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
+    float: left;
+    width: 25%;
+    padding: 0 10px;
 }
 
 /* Remove extra left and right margins, due to padding */
@@ -276,24 +276,24 @@ body {
 
 /* Clear floats after the columns */
 .roo:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* Style the counter cards */
 .caa {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  /*text-align: center;*/
-  background-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    /*text-align: center;*/
+    background-color: #f1f1f1;
 }
 /*
 .foot{
-	width: 100%;
-	
-	border-top: solid;
-  	border-width: 2px;
-  	border-color: black;
+width: 100%;
+
+border-top: solid;
+border-width: 2px;
+border-color: black;
 }
-*/
+ */

@@ -4,21 +4,21 @@
 <style>
 /* styling for buttons */
 button {
-  background-color: #e7e7e7; /* Green */
-  border: none;
-  color: black;
-  padding: 3px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+    background-color: #e7e7e7; /* Green */
+    border: none;
+    color: black;
+    padding: 3px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 /* styling for article table */
 table, th, td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 </style>
 
@@ -44,57 +44,57 @@ table, th, td {
 
 <!-- Show all existing artiles (id,name) -->
 <tbody>
-	<table>
-  		<tr>
-    	<td>Id</td>
-    	<td>Article Name</td>
-    	<td>Delete Article</td>
-    	<td>Update Article Information</td>
-  		</tr>
-	
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>Article Name</td>
+            <td>Delete Article</td>
+            <td>Update Article Information</td>
+        </tr>
+
         {% for id_name in data %}
-    	<tr>
+        <tr>
             <td id="jid" >{{ id_name['journal_id'] }}</td>
             <td id="jname" >{{ id_name['journal_name' ]}}</td>
             <td> <!-- replace here --> <button class = "delete_button" value="{{ id_name['journal_id'] }}" onclick = "delete_journal(this.value)" > Delete </button> </td>
-<!-- alert('the article has been deleted from the database'); -->
-		<td>
-				<button class = "update_button" value="{{ id_name['journal_id'] }}" onclick="to_update(this.value)"> Update </button>
-        </td>
-    	</tr>
+            <!-- alert('the article has been deleted from the database'); -->
+            <td>
+                <button class = "update_button" value="{{ id_name['journal_id'] }}" onclick="to_update(this.value)"> Update </button>
+            </td>
+        </tr>
 
-{% endfor %}
+        {% endfor %}
 
-    <script type="text/javascript">
-        function delete_journal(jid) {
-            if (jid != "undefined") {
-                window.location.href='/delete?id=' + jid;
-            } else {
-                alert(' What happened?');
-            }
-        }
-        function to_update(jid) {
-            if (jid != "undefined") {
-                window.location.href='/update.html?id=' + jid;
-            } else {
-                alert(' What happened?');
-            }
-        }
+        <script type="text/javascript">
+function delete_journal(jid) {
+    if (jid != "undefined") {
+    window.location.href='/delete?id=' + jid;
+} else {
+    alert(' What happened?');
+}
+}
+    function to_update(jid) {
+    if (jid != "undefined") {
+    window.location.href='/update.html?id=' + jid;
+} else {
+    alert(' What happened?');
+}
+}
 
-    </script>
+        </script>
 
-  </table>
+    </table>
 </tbody>
 
 <!-- Insert new articles-->
 <br>
 <div class = "insert">
-  <br>
- 	 <form action="insert">
- 		<input type="text" name="jname" placeholder="Name of new journal, e.g. Journal of Sleep Deprived UIUC Students" style="width: 50%;height:30px;font-size:12pt;">
-		 <button class = "insert_button" onclick = "alert('The journal has been added!')"> Create Journal </button>	
-	</form>
-	
+    <br>
+    <form action="insert">
+        <input type="text" name="jname" placeholder="Name of new journal, e.g. Journal of Sleep Deprived UIUC Students" style="width: 50%;height:30px;font-size:12pt;">
+        <button class = "insert_button" onclick = "alert('The journal has been added!')"> Create Journal </button>	
+    </form>
+
 </div>
 <br>
 

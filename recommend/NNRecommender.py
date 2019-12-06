@@ -75,10 +75,6 @@ if __name__ == "__main__":
     knn.fit(vectors)
 
     timer('knn')
-    #  query_phrase = "experiment evidence to see what is on research data statistics"
-    #  query = lemmatize(query_phrase)
-    #  print(query)
-    #  query_vector = tfidf.transform([query])
 
     dists, indices = knn.kneighbors(vectors[30])
     #  dists, indices = knn.kneighbors(query_vector)
@@ -88,5 +84,3 @@ if __name__ == "__main__":
         aid = ids[index]
         print('#{} distance: {}, no:{}, text:\n{} \n'.format(i, dist, index,
                                                             articles.get_by_id(aid).abstract))
-        #  print('#{} distance: {}, no:{}, text:\n{} \n'.format(i, dist,
-                                                    #  index, tfidf._tfidf.inverse_transform(vectors[indices[0][i]])))
