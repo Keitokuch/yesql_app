@@ -5,7 +5,7 @@ Flask==1.1.1
 greenlet==0.4.15
 itsdangerous==1.1.0
 Jinja2==2.10.3
-joblib==0.14.0
+joblib==1.2.0
 MarkupSafe==1.1.1
 msgpack==0.6.2
 neo4j==1.7.6
